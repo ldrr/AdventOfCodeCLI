@@ -6,9 +6,17 @@
 //
 
 func puzzle7() {
-    let hands = puzzle7RealData.split(separator: "\n").map({ Hand(row: String($0) )}).sorted()
-    let result = hands.enumerated().reduce(0) { $0 + ($1.element.amount * ($1.offset + 1)) }
-    print(result)
+    let data = puzzle7RealData.split(separator: "\n")
+    print(solvePuzzle7(data: data, withJoker: false))
+    print(solvePuzzle7(data: data, withJoker: true))
+}
+
+func solvePuzzle7(data: [String.SubSequence], withJoker: Bool) -> Int {
+    data
+        .map({ Hand(row: String($0), considerJokers: withJoker )})
+        .sorted()
+        .enumerated()
+        .reduce(0) { $0 + ($1.element.amount * ($1.offset + 1)) }
 }
 
 struct Hand: Comparable {
@@ -27,12 +35,12 @@ struct Hand: Comparable {
         case highCard = 1
     }
 
-    init(row: String) {
+    init(row: String, considerJokers: Bool) {
         let items = row.split(separator: " ")
         var cards = String(items[0])
 
         let charactersToReplace = ["A", "K", "Q", "J", "T"]
-        let replacements = ["F", "E", "D", "0", "B"]
+        let replacements = ["F", "E", "D", considerJokers ? "0" : "C", "B"]
 
         for (index, char) in charactersToReplace.enumerated() {
             cards = cards.replacingOccurrences(of: char, with: replacements[index])
