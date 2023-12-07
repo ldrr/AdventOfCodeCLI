@@ -1,0 +1,3 @@
+AoC: *.swift
+	swiftc -o $@ $^
+
