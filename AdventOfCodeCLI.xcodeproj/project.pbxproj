@@ -272,7 +272,6 @@
 		A7E81F792B1DE5AF0033DC9C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = AdventOfCodeCLI/AdventOfCodeCLI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 42PK5JTWNV;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -284,7 +283,6 @@
 		A7E81F7A2B1DE5AF0033DC9C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = AdventOfCodeCLI/AdventOfCodeCLI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 42PK5JTWNV;
 				ENABLE_HARDENED_RUNTIME = YES;
