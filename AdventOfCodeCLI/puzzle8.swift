@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RegexBuilder
 
 // Puzzle1: 14893
 // Puzzle2: 10241191004509
@@ -75,8 +76,6 @@ struct Node {
     let right: String
 
     init(row: String) {
-        pos = String(row.prefix(3))
-        left = row.mid(start: 7, length: 3)
-        right = row.mid(start: 12, length: 3)
+        (pos, left, right) = row.ranges(of: /[A-Z]{3}/).map({ String(row[$0]) }).splat()
     }
 }
