@@ -30,3 +30,11 @@ public extension RandomAccessCollection {
         self.indices.contains(index) ? self[index] : nil
     }
 }
+
+extension String {
+    func mid(start: Int, length: Int) -> String {
+        let startPos = self.index(self.startIndex, offsetBy: start)
+        let endPos = self.index(self.startIndex, offsetBy: start + length)
+        return String(self[startPos..<endPos])
+    }
+}

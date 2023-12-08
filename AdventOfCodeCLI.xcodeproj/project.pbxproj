@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A7606D932B20455500FF0EC5 /* puzzle6.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606D922B20455500FF0EC5 /* puzzle6.swift */; };
 		A7606D952B21B80A00FF0EC5 /* puzzle7.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606D942B21B80A00FF0EC5 /* puzzle7.swift */; };
+		A7606D992B22F76100FF0EC5 /* puzzle8.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606D982B22F76100FF0EC5 /* puzzle8.swift */; };
 		A770BCD62B1EFFD200278B11 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD52B1EFFD200278B11 /* data.swift */; };
 		A770BCD82B1EFFE400278B11 /* puzzle5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD72B1EFFE400278B11 /* puzzle5.swift */; };
 		A770BCDA2B1EFFED00278B11 /* puzzle4.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD92B1EFFED00278B11 /* puzzle4.swift */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		A7606D922B20455500FF0EC5 /* puzzle6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle6.swift; sourceTree = "<group>"; };
 		A7606D942B21B80A00FF0EC5 /* puzzle7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle7.swift; sourceTree = "<group>"; };
+		A7606D982B22F76100FF0EC5 /* puzzle8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle8.swift; sourceTree = "<group>"; };
 		A770BCD52B1EFFD200278B11 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
 		A770BCD72B1EFFE400278B11 /* puzzle5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle5.swift; sourceTree = "<group>"; };
 		A770BCD92B1EFFED00278B11 /* puzzle4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle4.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				A770BCD72B1EFFE400278B11 /* puzzle5.swift */,
 				A7606D922B20455500FF0EC5 /* puzzle6.swift */,
 				A7606D942B21B80A00FF0EC5 /* puzzle7.swift */,
+				A7606D982B22F76100FF0EC5 /* puzzle8.swift */,
 			);
 			path = AdventOfCodeCLI;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			files = (
 				A7606D952B21B80A00FF0EC5 /* puzzle7.swift in Sources */,
 				A7E81F752B1DE5AF0033DC9C /* main.swift in Sources */,
+				A7606D992B22F76100FF0EC5 /* puzzle8.swift in Sources */,
 				A770BCD82B1EFFE400278B11 /* puzzle5.swift in Sources */,
 				A770BCDA2B1EFFED00278B11 /* puzzle4.swift in Sources */,
 				A770BCDC2B1EFFF600278B11 /* foundation.swift in Sources */,
