@@ -16,6 +16,13 @@
 		A7606DA92B2473E000FF0EC5 /* data7.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DA82B2473E000FF0EC5 /* data7.swift */; };
 		A7606DAB2B2473E200FF0EC5 /* data8.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DAA2B2473E200FF0EC5 /* data8.swift */; };
 		A7606DAD2B2473E400FF0EC5 /* data9.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DAC2B2473E400FF0EC5 /* data9.swift */; };
+		A7606DB02B24782A00FF0EC5 /* puzzle1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DAF2B24782A00FF0EC5 /* puzzle1.swift */; };
+		A7606DB22B24783100FF0EC5 /* data1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DB12B24783100FF0EC5 /* data1.swift */; };
+		A7606DB62B24793D00FF0EC5 /* puzzle2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DB52B24793D00FF0EC5 /* puzzle2.swift */; };
+		A7606DB82B24794200FF0EC5 /* data2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DB72B24794200FF0EC5 /* data2.swift */; };
+		A7606DBB2B2479D100FF0EC5 /* puzzle3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DBA2B2479D100FF0EC5 /* puzzle3.swift */; };
+		A7606DBD2B2479D800FF0EC5 /* data3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DBC2B2479D800FF0EC5 /* data3.swift */; };
+		A7606DC12B247BC300FF0EC5 /* Ressources in Resources */ = {isa = PBXBuildFile; fileRef = A7606DBF2B247B2300FF0EC5 /* Ressources */; };
 		A770BCD62B1EFFD200278B11 /* data4.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD52B1EFFD200278B11 /* data4.swift */; };
 		A770BCD82B1EFFE400278B11 /* puzzle5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD72B1EFFE400278B11 /* puzzle5.swift */; };
 		A770BCDA2B1EFFED00278B11 /* puzzle4.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD92B1EFFED00278B11 /* puzzle4.swift */; };
@@ -26,9 +33,9 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		A7E81F6F2B1DE5AF0033DC9C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
@@ -45,6 +52,13 @@
 		A7606DA82B2473E000FF0EC5 /* data7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data7.swift; sourceTree = "<group>"; };
 		A7606DAA2B2473E200FF0EC5 /* data8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data8.swift; sourceTree = "<group>"; };
 		A7606DAC2B2473E400FF0EC5 /* data9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data9.swift; sourceTree = "<group>"; };
+		A7606DAF2B24782A00FF0EC5 /* puzzle1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle1.swift; sourceTree = "<group>"; };
+		A7606DB12B24783100FF0EC5 /* data1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data1.swift; sourceTree = "<group>"; };
+		A7606DB52B24793D00FF0EC5 /* puzzle2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2.swift; sourceTree = "<group>"; };
+		A7606DB72B24794200FF0EC5 /* data2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data2.swift; sourceTree = "<group>"; };
+		A7606DBA2B2479D100FF0EC5 /* puzzle3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle3.swift; sourceTree = "<group>"; };
+		A7606DBC2B2479D800FF0EC5 /* data3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data3.swift; sourceTree = "<group>"; };
+		A7606DBF2B247B2300FF0EC5 /* Ressources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Ressources; sourceTree = "<group>"; };
 		A770BCD52B1EFFD200278B11 /* data4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data4.swift; sourceTree = "<group>"; };
 		A770BCD72B1EFFE400278B11 /* puzzle5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle5.swift; sourceTree = "<group>"; };
 		A770BCD92B1EFFED00278B11 /* puzzle4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle4.swift; sourceTree = "<group>"; };
@@ -125,6 +139,33 @@
 			path = Puzzle9;
 			sourceTree = "<group>";
 		};
+		A7606DAE2B24781A00FF0EC5 /* Puzzle1 */ = {
+			isa = PBXGroup;
+			children = (
+				A7606DAF2B24782A00FF0EC5 /* puzzle1.swift */,
+				A7606DB12B24783100FF0EC5 /* data1.swift */,
+			);
+			path = Puzzle1;
+			sourceTree = "<group>";
+		};
+		A7606DB32B24792400FF0EC5 /* Puzzle2 */ = {
+			isa = PBXGroup;
+			children = (
+				A7606DB52B24793D00FF0EC5 /* puzzle2.swift */,
+				A7606DB72B24794200FF0EC5 /* data2.swift */,
+			);
+			path = Puzzle2;
+			sourceTree = "<group>";
+		};
+		A7606DB92B2479C800FF0EC5 /* Puzzle3 */ = {
+			isa = PBXGroup;
+			children = (
+				A7606DBA2B2479D100FF0EC5 /* puzzle3.swift */,
+				A7606DBC2B2479D800FF0EC5 /* data3.swift */,
+			);
+			path = Puzzle3;
+			sourceTree = "<group>";
+		};
 		A7E81F682B1DE5AF0033DC9C = {
 			isa = PBXGroup;
 			children = (
@@ -144,8 +185,12 @@
 		A7E81F732B1DE5AF0033DC9C /* AdventOfCodeCLI */ = {
 			isa = PBXGroup;
 			children = (
+				A7606DBF2B247B2300FF0EC5 /* Ressources */,
 				A770BCDB2B1EFFF600278B11 /* foundation.swift */,
 				A7E81F742B1DE5AF0033DC9C /* main.swift */,
+				A7606DAE2B24781A00FF0EC5 /* Puzzle1 */,
+				A7606DB32B24792400FF0EC5 /* Puzzle2 */,
+				A7606DB92B2479C800FF0EC5 /* Puzzle3 */,
 				A7606D9C2B24733500FF0EC5 /* Puzzle4 */,
 				A7606D9E2B24737600FF0EC5 /* Puzzle5 */,
 				A7606DA02B24739300FF0EC5 /* Puzzle6 */,
@@ -166,6 +211,7 @@
 			buildPhases = (
 				A7E81F6D2B1DE5AF0033DC9C /* Sources */,
 				A7E81F6E2B1DE5AF0033DC9C /* Frameworks */,
+				A7606DC02B247BBD00FF0EC5 /* Resources */,
 				A7E81F6F2B1DE5AF0033DC9C /* CopyFiles */,
 			);
 			buildRules = (
@@ -210,25 +256,42 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		A7606DC02B247BBD00FF0EC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7606DC12B247BC300FF0EC5 /* Ressources in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A7E81F6D2B1DE5AF0033DC9C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A7606D952B21B80A00FF0EC5 /* puzzle7.swift in Sources */,
+				A7606DB22B24783100FF0EC5 /* data1.swift in Sources */,
 				A7E81F752B1DE5AF0033DC9C /* main.swift in Sources */,
 				A7606D992B22F76100FF0EC5 /* puzzle8.swift in Sources */,
+				A7606DB82B24794200FF0EC5 /* data2.swift in Sources */,
 				A7606DA72B2473DE00FF0EC5 /* data6.swift in Sources */,
 				A7606DA52B2473B600FF0EC5 /* data5.swift in Sources */,
 				A7606DAD2B2473E400FF0EC5 /* data9.swift in Sources */,
 				A770BCD82B1EFFE400278B11 /* puzzle5.swift in Sources */,
+				A7606DB02B24782A00FF0EC5 /* puzzle1.swift in Sources */,
 				A770BCDA2B1EFFED00278B11 /* puzzle4.swift in Sources */,
+				A7606DB62B24793D00FF0EC5 /* puzzle2.swift in Sources */,
 				A7606DA92B2473E000FF0EC5 /* data7.swift in Sources */,
+				A7606DBB2B2479D100FF0EC5 /* puzzle3.swift in Sources */,
 				A7606DAB2B2473E200FF0EC5 /* data8.swift in Sources */,
 				A770BCDC2B1EFFF600278B11 /* foundation.swift in Sources */,
 				A7606D932B20455500FF0EC5 /* puzzle6.swift in Sources */,
 				A7606D9B2B244EC200FF0EC5 /* puzzle9.swift in Sources */,
 				A770BCD62B1EFFD200278B11 /* data4.swift in Sources */,
+				A7606DBD2B2479D800FF0EC5 /* data3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +420,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 42PK5JTWNV;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = J7F2YSNYQ4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -368,7 +432,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 42PK5JTWNV;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = J7F2YSNYQ4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -9,26 +9,22 @@ import Foundation
 
 func puzzle4() {
     // 39746 39710 19855
-    let timeInterval = measureExecutionTime {
-        let lines = contentPuzzle4.split(separator: "\n")
-        let cards = lines.map({ ScratchCard(card: String($0)) })
+    let lines = contentPuzzle4.split(separator: "\n") // contentOfResource(name: "data4", type: "txt") //
+    let cards = lines.map({ ScratchCard(card: String($0)) })
 
-        // puzzle 1
-        print(cards.reduce(0) { $0 + $1.pot })
+    // puzzle 1
+    print(cards.reduce(0) { $0 + $1.pot })
 
-        // puzzle 2
-        var cardsCount = lines.map({ _ in 1 })
-        for (i, card) in cards.enumerated() {
-            if(card.winnersCount > 0) {
-                for pos in (i + 1)...(min(i + card.winnersCount, cardsCount.count - 1)) {
-                    cardsCount[pos] += cardsCount[i]
-                }
+    // puzzle 2
+    var cardsCount = lines.map({ _ in 1 })
+    for (i, card) in cards.enumerated() {
+        if(card.winnersCount > 0) {
+            for pos in (i + 1)...(min(i + card.winnersCount, cardsCount.count - 1)) {
+                cardsCount[pos] += cardsCount[i]
             }
         }
-        print(cardsCount.reduce(0) { $0 + $1})
     }
-
-    print(timeInterval)
+    print(cardsCount.reduce(0) { $0 + $1})
 }
 
 struct ScratchCard {
