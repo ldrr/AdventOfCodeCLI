@@ -15,15 +15,18 @@
 		A7606DA72B2473DE00FF0EC5 /* data6.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DA62B2473DE00FF0EC5 /* data6.swift */; };
 		A7606DA92B2473E000FF0EC5 /* data7.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DA82B2473E000FF0EC5 /* data7.swift */; };
 		A7606DAB2B2473E200FF0EC5 /* data8.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DAA2B2473E200FF0EC5 /* data8.swift */; };
-		A7606DAD2B2473E400FF0EC5 /* data9.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DAC2B2473E400FF0EC5 /* data9.swift */; };
+		A7606DAD2B2473E400FF0EC5 /* puzzle9data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DAC2B2473E400FF0EC5 /* puzzle9data.swift */; };
 		A7606DB02B24782A00FF0EC5 /* puzzle1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DAF2B24782A00FF0EC5 /* puzzle1.swift */; };
 		A7606DB22B24783100FF0EC5 /* data1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DB12B24783100FF0EC5 /* data1.swift */; };
 		A7606DB62B24793D00FF0EC5 /* puzzle2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DB52B24793D00FF0EC5 /* puzzle2.swift */; };
 		A7606DB82B24794200FF0EC5 /* data2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DB72B24794200FF0EC5 /* data2.swift */; };
 		A7606DBB2B2479D100FF0EC5 /* puzzle3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DBA2B2479D100FF0EC5 /* puzzle3.swift */; };
 		A7606DBD2B2479D800FF0EC5 /* data3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DBC2B2479D800FF0EC5 /* data3.swift */; };
-		A7606DC12B247BC300FF0EC5 /* Ressources in Resources */ = {isa = PBXBuildFile; fileRef = A7606DBF2B247B2300FF0EC5 /* Ressources */; };
 		A7606DC32B25917F00FF0EC5 /* puzzle10.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DC22B25917F00FF0EC5 /* puzzle10.swift */; };
+		A7606DC42B2616A600FF0EC5 /* Ressources in Resources */ = {isa = PBXBuildFile; fileRef = A7606DBF2B247B2300FF0EC5 /* Ressources */; };
+		A7606DC72B2616E800FF0EC5 /* puzzle11.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DC62B2616E800FF0EC5 /* puzzle11.swift */; };
+		A7606DC92B26171B00FF0EC5 /* puzzle10data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DC82B26171B00FF0EC5 /* puzzle10data.swift */; };
+		A7606DCB2B26174C00FF0EC5 /* puzzle11data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DCA2B26174C00FF0EC5 /* puzzle11data.swift */; };
 		A770BCD62B1EFFD200278B11 /* data4.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD52B1EFFD200278B11 /* data4.swift */; };
 		A770BCD82B1EFFE400278B11 /* puzzle5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD72B1EFFE400278B11 /* puzzle5.swift */; };
 		A770BCDA2B1EFFED00278B11 /* puzzle4.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD92B1EFFED00278B11 /* puzzle4.swift */; };
@@ -52,7 +55,7 @@
 		A7606DA62B2473DE00FF0EC5 /* data6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data6.swift; sourceTree = "<group>"; };
 		A7606DA82B2473E000FF0EC5 /* data7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data7.swift; sourceTree = "<group>"; };
 		A7606DAA2B2473E200FF0EC5 /* data8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data8.swift; sourceTree = "<group>"; };
-		A7606DAC2B2473E400FF0EC5 /* data9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data9.swift; sourceTree = "<group>"; };
+		A7606DAC2B2473E400FF0EC5 /* puzzle9data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle9data.swift; sourceTree = "<group>"; };
 		A7606DAF2B24782A00FF0EC5 /* puzzle1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle1.swift; sourceTree = "<group>"; };
 		A7606DB12B24783100FF0EC5 /* data1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data1.swift; sourceTree = "<group>"; };
 		A7606DB52B24793D00FF0EC5 /* puzzle2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2.swift; sourceTree = "<group>"; };
@@ -61,6 +64,9 @@
 		A7606DBC2B2479D800FF0EC5 /* data3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data3.swift; sourceTree = "<group>"; };
 		A7606DBF2B247B2300FF0EC5 /* Ressources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Ressources; sourceTree = "<group>"; };
 		A7606DC22B25917F00FF0EC5 /* puzzle10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle10.swift; sourceTree = "<group>"; };
+		A7606DC62B2616E800FF0EC5 /* puzzle11.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle11.swift; sourceTree = "<group>"; };
+		A7606DC82B26171B00FF0EC5 /* puzzle10data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle10data.swift; sourceTree = "<group>"; };
+		A7606DCA2B26174C00FF0EC5 /* puzzle11data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle11data.swift; sourceTree = "<group>"; };
 		A770BCD52B1EFFD200278B11 /* data4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data4.swift; sourceTree = "<group>"; };
 		A770BCD72B1EFFE400278B11 /* puzzle5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle5.swift; sourceTree = "<group>"; };
 		A770BCD92B1EFFED00278B11 /* puzzle4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle4.swift; sourceTree = "<group>"; };
@@ -129,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				A7606DC22B25917F00FF0EC5 /* puzzle10.swift */,
+				A7606DC82B26171B00FF0EC5 /* puzzle10data.swift */,
 			);
 			path = Puzzle10;
 			sourceTree = "<group>";
@@ -136,8 +143,8 @@
 		A7606DA32B24739300FF0EC5 /* Puzzle9 */ = {
 			isa = PBXGroup;
 			children = (
-				A7606DAC2B2473E400FF0EC5 /* data9.swift */,
 				A7606D9A2B244EC200FF0EC5 /* puzzle9.swift */,
+				A7606DAC2B2473E400FF0EC5 /* puzzle9data.swift */,
 			);
 			path = Puzzle9;
 			sourceTree = "<group>";
@@ -167,6 +174,15 @@
 				A7606DBC2B2479D800FF0EC5 /* data3.swift */,
 			);
 			path = Puzzle3;
+			sourceTree = "<group>";
+		};
+		A7606DC52B2616D800FF0EC5 /* Puzzle11 */ = {
+			isa = PBXGroup;
+			children = (
+				A7606DC62B2616E800FF0EC5 /* puzzle11.swift */,
+				A7606DCA2B26174C00FF0EC5 /* puzzle11data.swift */,
+			);
+			path = Puzzle11;
 			sourceTree = "<group>";
 		};
 		A7E81F682B1DE5AF0033DC9C = {
@@ -201,6 +217,7 @@
 				A7606DA12B24739300FF0EC5 /* Puzzle8 */,
 				A7606DA32B24739300FF0EC5 /* Puzzle9 */,
 				A7606DA22B24739300FF0EC5 /* Puzzle10 */,
+				A7606DC52B2616D800FF0EC5 /* Puzzle11 */,
 			);
 			path = AdventOfCodeCLI;
 			sourceTree = "<group>";
@@ -264,7 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7606DC12B247BC300FF0EC5 /* Ressources in Resources */,
+				A7606DC42B2616A600FF0EC5 /* Ressources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,16 +293,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7606D952B21B80A00FF0EC5 /* puzzle7.swift in Sources */,
+				A7606DC72B2616E800FF0EC5 /* puzzle11.swift in Sources */,
 				A7606DB22B24783100FF0EC5 /* data1.swift in Sources */,
+				A7606DCB2B26174C00FF0EC5 /* puzzle11data.swift in Sources */,
 				A7E81F752B1DE5AF0033DC9C /* main.swift in Sources */,
 				A7606D992B22F76100FF0EC5 /* puzzle8.swift in Sources */,
 				A7606DB82B24794200FF0EC5 /* data2.swift in Sources */,
 				A7606DA72B2473DE00FF0EC5 /* data6.swift in Sources */,
 				A7606DA52B2473B600FF0EC5 /* data5.swift in Sources */,
-				A7606DAD2B2473E400FF0EC5 /* data9.swift in Sources */,
+				A7606DAD2B2473E400FF0EC5 /* puzzle9data.swift in Sources */,
 				A770BCD82B1EFFE400278B11 /* puzzle5.swift in Sources */,
 				A7606DB02B24782A00FF0EC5 /* puzzle1.swift in Sources */,
 				A7606DC32B25917F00FF0EC5 /* puzzle10.swift in Sources */,
+				A7606DC92B26171B00FF0EC5 /* puzzle10data.swift in Sources */,
 				A770BCDA2B1EFFED00278B11 /* puzzle4.swift in Sources */,
 				A7606DB62B24793D00FF0EC5 /* puzzle2.swift in Sources */,
 				A7606DA92B2473E000FF0EC5 /* data7.swift in Sources */,
