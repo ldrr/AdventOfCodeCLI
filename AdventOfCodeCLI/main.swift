@@ -8,5 +8,5 @@
 import Foundation
 
 print(measureExecutionTime {
-    puzzle11()
+    puzzle2403()
 })

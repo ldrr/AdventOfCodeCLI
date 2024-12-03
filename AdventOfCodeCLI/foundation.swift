@@ -37,7 +37,27 @@ extension String {
         let endPos = self.index(self.startIndex, offsetBy: start + length)
         return String(self[startPos..<endPos])
     }
+
+    public subscript(_ idx: Int) -> Character {
+        self[self.index(self.startIndex, offsetBy: idx)]
+    }
+
+    public func suffix(_ idx: Int) -> String {
+        let index = self.index(from: idx)
+        return Self(self.suffix(from: index))
+    }
+
+    public func mid(_ range: Range<Int>) -> String {
+        let startIndex = index(from: range.lowerBound)
+        let endIndex = index(from: range.upperBound)
+        return String(self[startIndex..<endIndex])
+    }
+
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+    }
 }
+
 
 extension Array {
     func splat() -> (Element,Element) {

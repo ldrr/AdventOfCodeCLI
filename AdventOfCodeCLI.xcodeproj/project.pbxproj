@@ -27,10 +27,18 @@
 		A7606DC72B2616E800FF0EC5 /* puzzle11.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DC62B2616E800FF0EC5 /* puzzle11.swift */; };
 		A7606DC92B26171B00FF0EC5 /* puzzle10data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DC82B26171B00FF0EC5 /* puzzle10data.swift */; };
 		A7606DCB2B26174C00FF0EC5 /* puzzle11data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DCA2B26174C00FF0EC5 /* puzzle11data.swift */; };
+		A7606DCE2B2830A700FF0EC5 /* puzzle12.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DCD2B2830A700FF0EC5 /* puzzle12.swift */; };
+		A7606DD02B283FA500FF0EC5 /* puzzle12data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DCF2B283FA500FF0EC5 /* puzzle12data.swift */; };
+		A7606DD42B28763800FF0EC5 /* puzzle12v3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DD32B28763800FF0EC5 /* puzzle12v3.swift */; };
+		A7606DD72B29824000FF0EC5 /* puzzle13.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DD62B29824000FF0EC5 /* puzzle13.swift */; };
+		A7606DD92B2993F700FF0EC5 /* puzzle13data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606DD82B2993F700FF0EC5 /* puzzle13data.swift */; };
 		A770BCD62B1EFFD200278B11 /* data4.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD52B1EFFD200278B11 /* data4.swift */; };
 		A770BCD82B1EFFE400278B11 /* puzzle5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD72B1EFFE400278B11 /* puzzle5.swift */; };
 		A770BCDA2B1EFFED00278B11 /* puzzle4.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCD92B1EFFED00278B11 /* puzzle4.swift */; };
 		A770BCDC2B1EFFF600278B11 /* foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770BCDB2B1EFFF600278B11 /* foundation.swift */; };
+		A77776F72CFDD75600B71083 /* puzzle2401.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77776F62CFDD75600B71083 /* puzzle2401.swift */; };
+		A77776FC2CFDE05B00B71083 /* puzzle2402.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77776FB2CFDE05B00B71083 /* puzzle2402.swift */; };
+		A77776FE2CFF98B000B71083 /* puzzle2403.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77776FD2CFF98B000B71083 /* puzzle2403.swift */; };
 		A7E81F752B1DE5AF0033DC9C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E81F742B1DE5AF0033DC9C /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,10 +75,18 @@
 		A7606DC62B2616E800FF0EC5 /* puzzle11.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle11.swift; sourceTree = "<group>"; };
 		A7606DC82B26171B00FF0EC5 /* puzzle10data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle10data.swift; sourceTree = "<group>"; };
 		A7606DCA2B26174C00FF0EC5 /* puzzle11data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle11data.swift; sourceTree = "<group>"; };
+		A7606DCD2B2830A700FF0EC5 /* puzzle12.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle12.swift; sourceTree = "<group>"; };
+		A7606DCF2B283FA500FF0EC5 /* puzzle12data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle12data.swift; sourceTree = "<group>"; };
+		A7606DD32B28763800FF0EC5 /* puzzle12v3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle12v3.swift; sourceTree = "<group>"; };
+		A7606DD62B29824000FF0EC5 /* puzzle13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle13.swift; sourceTree = "<group>"; };
+		A7606DD82B2993F700FF0EC5 /* puzzle13data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle13data.swift; sourceTree = "<group>"; };
 		A770BCD52B1EFFD200278B11 /* data4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data4.swift; sourceTree = "<group>"; };
 		A770BCD72B1EFFE400278B11 /* puzzle5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle5.swift; sourceTree = "<group>"; };
 		A770BCD92B1EFFED00278B11 /* puzzle4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle4.swift; sourceTree = "<group>"; };
 		A770BCDB2B1EFFF600278B11 /* foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foundation.swift; sourceTree = "<group>"; };
+		A77776F62CFDD75600B71083 /* puzzle2401.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2401.swift; sourceTree = "<group>"; };
+		A77776FB2CFDE05B00B71083 /* puzzle2402.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2402.swift; sourceTree = "<group>"; };
+		A77776FD2CFF98B000B71083 /* puzzle2403.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2403.swift; sourceTree = "<group>"; };
 		A7E81F712B1DE5AF0033DC9C /* AdventOfCodeCLI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdventOfCodeCLI; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7E81F742B1DE5AF0033DC9C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +201,71 @@
 			path = Puzzle11;
 			sourceTree = "<group>";
 		};
+		A7606DCC2B28309800FF0EC5 /* Puzzle12 */ = {
+			isa = PBXGroup;
+			children = (
+				A7606DCD2B2830A700FF0EC5 /* puzzle12.swift */,
+				A7606DD32B28763800FF0EC5 /* puzzle12v3.swift */,
+				A7606DCF2B283FA500FF0EC5 /* puzzle12data.swift */,
+			);
+			path = Puzzle12;
+			sourceTree = "<group>";
+		};
+		A7606DD52B29823500FF0EC5 /* Puzzle13 */ = {
+			isa = PBXGroup;
+			children = (
+				A7606DD62B29824000FF0EC5 /* puzzle13.swift */,
+				A7606DD82B2993F700FF0EC5 /* puzzle13data.swift */,
+			);
+			path = Puzzle13;
+			sourceTree = "<group>";
+		};
+		A77776F32CFDD71800B71083 /* 2024 */ = {
+			isa = PBXGroup;
+			children = (
+				A77776FA2CFDE04C00B71083 /* 02 */,
+				A77776F52CFDD74100B71083 /* 01 */,
+				A77776FD2CFF98B000B71083 /* puzzle2403.swift */,
+			);
+			path = 2024;
+			sourceTree = "<group>";
+		};
+		A77776F42CFDD72700B71083 /* 2023 */ = {
+			isa = PBXGroup;
+			children = (
+				A7606DAE2B24781A00FF0EC5 /* Puzzle1 */,
+				A7606DB32B24792400FF0EC5 /* Puzzle2 */,
+				A7606DB92B2479C800FF0EC5 /* Puzzle3 */,
+				A7606D9C2B24733500FF0EC5 /* Puzzle4 */,
+				A7606D9E2B24737600FF0EC5 /* Puzzle5 */,
+				A7606DA02B24739300FF0EC5 /* Puzzle6 */,
+				A7606D9F2B24739300FF0EC5 /* Puzzle7 */,
+				A7606DA12B24739300FF0EC5 /* Puzzle8 */,
+				A7606DA32B24739300FF0EC5 /* Puzzle9 */,
+				A7606DA22B24739300FF0EC5 /* Puzzle10 */,
+				A7606DC52B2616D800FF0EC5 /* Puzzle11 */,
+				A7606DCC2B28309800FF0EC5 /* Puzzle12 */,
+				A7606DD52B29823500FF0EC5 /* Puzzle13 */,
+			);
+			path = 2023;
+			sourceTree = "<group>";
+		};
+		A77776F52CFDD74100B71083 /* 01 */ = {
+			isa = PBXGroup;
+			children = (
+				A77776F62CFDD75600B71083 /* puzzle2401.swift */,
+			);
+			path = 01;
+			sourceTree = "<group>";
+		};
+		A77776FA2CFDE04C00B71083 /* 02 */ = {
+			isa = PBXGroup;
+			children = (
+				A77776FB2CFDE05B00B71083 /* puzzle2402.swift */,
+			);
+			path = 02;
+			sourceTree = "<group>";
+		};
 		A7E81F682B1DE5AF0033DC9C = {
 			isa = PBXGroup;
 			children = (
@@ -204,20 +285,11 @@
 		A7E81F732B1DE5AF0033DC9C /* AdventOfCodeCLI */ = {
 			isa = PBXGroup;
 			children = (
+				A77776F42CFDD72700B71083 /* 2023 */,
+				A77776F32CFDD71800B71083 /* 2024 */,
 				A7606DBF2B247B2300FF0EC5 /* Ressources */,
 				A770BCDB2B1EFFF600278B11 /* foundation.swift */,
 				A7E81F742B1DE5AF0033DC9C /* main.swift */,
-				A7606DAE2B24781A00FF0EC5 /* Puzzle1 */,
-				A7606DB32B24792400FF0EC5 /* Puzzle2 */,
-				A7606DB92B2479C800FF0EC5 /* Puzzle3 */,
-				A7606D9C2B24733500FF0EC5 /* Puzzle4 */,
-				A7606D9E2B24737600FF0EC5 /* Puzzle5 */,
-				A7606DA02B24739300FF0EC5 /* Puzzle6 */,
-				A7606D9F2B24739300FF0EC5 /* Puzzle7 */,
-				A7606DA12B24739300FF0EC5 /* Puzzle8 */,
-				A7606DA32B24739300FF0EC5 /* Puzzle9 */,
-				A7606DA22B24739300FF0EC5 /* Puzzle10 */,
-				A7606DC52B2616D800FF0EC5 /* Puzzle11 */,
 			);
 			path = AdventOfCodeCLI;
 			sourceTree = "<group>";
@@ -294,27 +366,35 @@
 			files = (
 				A7606D952B21B80A00FF0EC5 /* puzzle7.swift in Sources */,
 				A7606DC72B2616E800FF0EC5 /* puzzle11.swift in Sources */,
+				A7606DD02B283FA500FF0EC5 /* puzzle12data.swift in Sources */,
 				A7606DB22B24783100FF0EC5 /* data1.swift in Sources */,
 				A7606DCB2B26174C00FF0EC5 /* puzzle11data.swift in Sources */,
 				A7E81F752B1DE5AF0033DC9C /* main.swift in Sources */,
 				A7606D992B22F76100FF0EC5 /* puzzle8.swift in Sources */,
 				A7606DB82B24794200FF0EC5 /* data2.swift in Sources */,
+				A77776F72CFDD75600B71083 /* puzzle2401.swift in Sources */,
 				A7606DA72B2473DE00FF0EC5 /* data6.swift in Sources */,
+				A77776FC2CFDE05B00B71083 /* puzzle2402.swift in Sources */,
 				A7606DA52B2473B600FF0EC5 /* data5.swift in Sources */,
 				A7606DAD2B2473E400FF0EC5 /* puzzle9data.swift in Sources */,
 				A770BCD82B1EFFE400278B11 /* puzzle5.swift in Sources */,
 				A7606DB02B24782A00FF0EC5 /* puzzle1.swift in Sources */,
 				A7606DC32B25917F00FF0EC5 /* puzzle10.swift in Sources */,
 				A7606DC92B26171B00FF0EC5 /* puzzle10data.swift in Sources */,
+				A7606DD92B2993F700FF0EC5 /* puzzle13data.swift in Sources */,
 				A770BCDA2B1EFFED00278B11 /* puzzle4.swift in Sources */,
 				A7606DB62B24793D00FF0EC5 /* puzzle2.swift in Sources */,
 				A7606DA92B2473E000FF0EC5 /* data7.swift in Sources */,
+				A7606DCE2B2830A700FF0EC5 /* puzzle12.swift in Sources */,
+				A7606DD42B28763800FF0EC5 /* puzzle12v3.swift in Sources */,
 				A7606DBB2B2479D100FF0EC5 /* puzzle3.swift in Sources */,
 				A7606DAB2B2473E200FF0EC5 /* data8.swift in Sources */,
 				A770BCDC2B1EFFF600278B11 /* foundation.swift in Sources */,
+				A7606DD72B29824000FF0EC5 /* puzzle13.swift in Sources */,
 				A7606D932B20455500FF0EC5 /* puzzle6.swift in Sources */,
 				A7606D9B2B244EC200FF0EC5 /* puzzle9.swift in Sources */,
 				A770BCD62B1EFFD200278B11 /* data4.swift in Sources */,
+				A77776FE2CFF98B000B71083 /* puzzle2403.swift in Sources */,
 				A7606DBD2B2479D800FF0EC5 /* data3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
