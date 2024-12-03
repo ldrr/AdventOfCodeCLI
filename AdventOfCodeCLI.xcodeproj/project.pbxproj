@@ -39,6 +39,7 @@
 		A77776F72CFDD75600B71083 /* puzzle2401.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77776F62CFDD75600B71083 /* puzzle2401.swift */; };
 		A77776FC2CFDE05B00B71083 /* puzzle2402.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77776FB2CFDE05B00B71083 /* puzzle2402.swift */; };
 		A77776FE2CFF98B000B71083 /* puzzle2403.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77776FD2CFF98B000B71083 /* puzzle2403.swift */; };
+		A77777002CFFA88700B71083 /* puzzle2404.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77776FF2CFFA88700B71083 /* puzzle2404.swift */; };
 		A7E81F752B1DE5AF0033DC9C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E81F742B1DE5AF0033DC9C /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		A77776F62CFDD75600B71083 /* puzzle2401.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2401.swift; sourceTree = "<group>"; };
 		A77776FB2CFDE05B00B71083 /* puzzle2402.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2402.swift; sourceTree = "<group>"; };
 		A77776FD2CFF98B000B71083 /* puzzle2403.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2403.swift; sourceTree = "<group>"; };
+		A77776FF2CFFA88700B71083 /* puzzle2404.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2404.swift; sourceTree = "<group>"; };
 		A7E81F712B1DE5AF0033DC9C /* AdventOfCodeCLI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdventOfCodeCLI; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7E81F742B1DE5AF0033DC9C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -223,9 +225,10 @@
 		A77776F32CFDD71800B71083 /* 2024 */ = {
 			isa = PBXGroup;
 			children = (
-				A77776FA2CFDE04C00B71083 /* 02 */,
-				A77776F52CFDD74100B71083 /* 01 */,
+				A77776F62CFDD75600B71083 /* puzzle2401.swift */,
+				A77776FB2CFDE05B00B71083 /* puzzle2402.swift */,
 				A77776FD2CFF98B000B71083 /* puzzle2403.swift */,
+				A77776FF2CFFA88700B71083 /* puzzle2404.swift */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -248,22 +251,6 @@
 				A7606DD52B29823500FF0EC5 /* Puzzle13 */,
 			);
 			path = 2023;
-			sourceTree = "<group>";
-		};
-		A77776F52CFDD74100B71083 /* 01 */ = {
-			isa = PBXGroup;
-			children = (
-				A77776F62CFDD75600B71083 /* puzzle2401.swift */,
-			);
-			path = 01;
-			sourceTree = "<group>";
-		};
-		A77776FA2CFDE04C00B71083 /* 02 */ = {
-			isa = PBXGroup;
-			children = (
-				A77776FB2CFDE05B00B71083 /* puzzle2402.swift */,
-			);
-			path = 02;
 			sourceTree = "<group>";
 		};
 		A7E81F682B1DE5AF0033DC9C = {
@@ -381,6 +368,7 @@
 				A7606DB02B24782A00FF0EC5 /* puzzle1.swift in Sources */,
 				A7606DC32B25917F00FF0EC5 /* puzzle10.swift in Sources */,
 				A7606DC92B26171B00FF0EC5 /* puzzle10data.swift in Sources */,
+				A77777002CFFA88700B71083 /* puzzle2404.swift in Sources */,
 				A7606DD92B2993F700FF0EC5 /* puzzle13data.swift in Sources */,
 				A770BCDA2B1EFFED00278B11 /* puzzle4.swift in Sources */,
 				A7606DB62B24793D00FF0EC5 /* puzzle2.swift in Sources */,
