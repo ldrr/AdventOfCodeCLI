@@ -56,6 +56,21 @@ extension String {
     func index(from: Int) -> Index {
         return self.index(startIndex, offsetBy: from)
     }
+
+    func numberOfMatches(pattern: String) -> Int {
+        let pattern = try! NSRegularExpression(pattern: pattern, options: [])
+        let matches = pattern.numberOfMatches(in: self, range: NSRange(self.startIndex..., in: self))
+        return matches
+    }
+
+    func numberOfMatchesAndReversed(pattern: String) -> Int {
+        let pattern = try! NSRegularExpression(pattern: pattern, options: [])
+        let matches = pattern.numberOfMatches(in: self, range: NSRange(self.startIndex..., in: self))
+
+        let reversed = String(self.reversed())
+        let matchesReversed = pattern.numberOfMatches(in: reversed, range: NSRange(reversed.startIndex..., in: reversed))
+        return matches + matchesReversed
+    }
 }
 
 
