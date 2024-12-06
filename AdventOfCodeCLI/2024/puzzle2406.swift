@@ -33,7 +33,7 @@ struct Puzzle2406 {
     var currentPos = Pos(x: 0, y: 0)
     var currentDirection = Direction.up
     var visitedPos: [Pos] = []
-    var array = Array(repeating: false, count: 250000)
+    var array: [Int16] = Array(repeating: 0, count: 250000)
 
     init(input: String) {
         self.grid = input.components(separatedBy: "\n").compactMap {
@@ -100,13 +100,11 @@ struct Puzzle2406 {
         let x, y: Int
     }
 
-    @inlinable mutating func run1(countNeeded: Bool = true) -> Int {
-        // var running = true
-
-        array = Array(repeating: false, count: 250000)
-
+    @inlinable mutating func run1(countNeeded: Bool = true, loop: Int16 = 0) -> Int {
         while(true) {
             let newPos = self.currentDirection.nextPos(from: self.currentPos)
+
+            // exit check
             guard newPos.x >= 0 && newPos.y >= 0 && newPos.x < grid[0].count && newPos.y < grid.count else {
                 guard countNeeded else { return 1 }
                 return self.grid.reduce(0) { partialResult, row in
@@ -133,11 +131,11 @@ struct Puzzle2406 {
                     }
                 }()
                 if(!countNeeded) {
-                    let key = (self.currentPos.x * 150 + self.currentPos.y) * 10 + self.currentDirection.rawValue
-                    if array[key] {
+                    let key = (self.currentPos.x << 8) | (self.currentPos.y << 2) | self.currentDirection.rawValue
+                    if array[key] == loop {
                         return -1
                     }
-                    array[key] = true
+                    array[key] = loop
                 }
                 self.currentDirection = self.currentDirection.nextDirection()
             }
@@ -146,17 +144,18 @@ struct Puzzle2406 {
 
     mutating func run2() -> Int {
 
-        var counter = 0
+        var counter = 0, loop: Int16 = 1
         self.grid = self.originalGrid
 
         for pos in self.visitedPos {
             self.currentPos = self.originalStart
             self.currentDirection = .up
             self.grid[pos.y][pos.x] = .wall
-            if self.run1(countNeeded: false) < 0 {
+            if self.run1(countNeeded: false, loop: loop) < 0 {
                 counter += 1
             }
             self.grid[pos.y][pos.x] = .empty
+            loop += 1
         }
 
         return counter
