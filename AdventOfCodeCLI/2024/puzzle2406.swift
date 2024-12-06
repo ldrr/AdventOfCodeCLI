@@ -56,10 +56,18 @@ class Puzzle2406 {
         case wall = "#"
         case start = "^"
         case visited = "X"
-        case turnedAround = "+"
+        case turnedToTop = "┗"
+        case turnedToRight = "┏"
+        case turnedToBottom = "┓"
+        case turnedToLeft = "┛"
+
+        var isTurned: Bool {
+            self == .turnedToTop || self == .turnedToRight || self == .turnedToBottom || self == .turnedToLeft
+        }
     }
 
-    struct Pos {
+
+    struct Pos: Hashable {
         let x, y: Int
     }
 
@@ -71,24 +79,34 @@ class Puzzle2406 {
         self.grid.map { String($0.map { $0.rawValue }) + "\n" }.joined()
     }
 
-    func run1() -> Int {
+    func run1(countNeeded: Bool = true) -> Int {
+        var running = true
         let maxSteps = self.grid.count * self.grid[0].count
         var steps = 0
-        var running = true
+        var turnPositions: [Pos: Direction] = [:]
+
         while(running) {
             let newPos = self.currentDirection.nextPos(from: self.currentPos)
             guard isValid(pos: newPos) else {
                 running = false
                 break
             }
-            switch self.grid[newPos.y][newPos.x] {
-//            case .turnedAround:
-//                return -1 // endless loop
-            case .empty, .visited, .start, .turnedAround:
+            switch (self.grid[newPos.y][newPos.x], currentDirection) {
+            case (.turnedToTop, .left), (.turnedToRight, .up), (.turnedToBottom, .right), (.turnedToLeft, .down):
+                return -1
+            case (.empty, _), (.visited, _), (.start, _),
+                (.turnedToTop, _), (.turnedToRight, _), (.turnedToBottom, _), (.turnedToLeft, _):
                 self.currentPos = newPos
                 self.grid[self.currentPos.y][self.currentPos.x] = .visited
-            case .wall:
-                self.grid[self.currentPos.y][self.currentPos.x] = .turnedAround
+            case (.wall, _):
+                self.grid[self.currentPos.y][self.currentPos.x] = {
+                    switch self.currentDirection {
+                    case .up: return .turnedToRight
+                    case .right: return .turnedToBottom
+                    case .down: return .turnedToLeft
+                    case .left: return .turnedToTop
+                    }
+                }()
                 self.currentDirection = self.currentDirection.nextDirection()
             }
 
@@ -96,10 +114,12 @@ class Puzzle2406 {
             if steps >= maxSteps {
                 return -1
             }
+
         }
+        guard countNeeded else { return 1 }
         return self.grid.reduce(0) { partialResult, row in
             partialResult + row.reduce(0, { partialResult, type in
-                partialResult + (type == .visited || type == .turnedAround ? 1 : 0)
+                partialResult + (type == .visited || type.isTurned ? 1 : 0)
             })
         }
     }
@@ -116,10 +136,10 @@ class Puzzle2406 {
                 switch self.grid[y][x] {
                 case .empty, .start:
                     self.grid[y][x] = .wall
-                    if self.run1() < 0 {
+                    if self.run1(countNeeded: false) < 0 {
                         counter += 1
                     }
-                case .visited, .turnedAround, .wall:
+                case .visited, .turnedToTop, .turnedToRight, .turnedToBottom, .turnedToLeft, .wall:
                     break
                 }
             }
