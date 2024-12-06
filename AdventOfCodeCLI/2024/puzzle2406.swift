@@ -142,16 +142,50 @@ struct Puzzle2406 {
         }
     }
 
+    @inlinable mutating func run1v2() -> Int {
+        while(true) {
+            let newPos = self.currentDirection.nextPos(from: self.currentPos)
+
+            // exit check
+            guard newPos.x >= 0 && newPos.y >= 0 && newPos.x < grid[0].count && newPos.y < grid.count else {
+                return 1
+            }
+
+            switch self.grid[newPos.y][newPos.x] {
+            case .empty, .visited, .start, .turnedToTop, .turnedToRight, .turnedToBottom, .turnedToLeft:
+                self.currentPos = newPos
+                self.grid[self.currentPos.y][self.currentPos.x] = .visited
+            case .wall:
+                self.grid[self.currentPos.y][self.currentPos.x] = {
+                    switch self.currentDirection {
+                    case .up: return .turnedToRight
+                    case .right: return .turnedToBottom
+                    case .down: return .turnedToLeft
+                    case .left: return .turnedToTop
+                    }
+                }()
+                let key = (self.currentPos.x << 12) | (self.currentPos.y << 4) | self.currentDirection.rawValue
+                if array[key] == loop {
+                    return -1
+                }
+                array[key] = loop
+                self.currentDirection = self.currentDirection.nextDirection()
+            }
+        }
+    }
+
+    var loop: Int16 = 1
+
     mutating func run2() -> Int {
 
-        var counter = 0, loop: Int16 = 1
+        var counter = 0
         self.grid = self.originalGrid
 
         for pos in self.visitedPos {
             self.currentPos = self.originalStart
             self.currentDirection = .up
             self.grid[pos.y][pos.x] = .wall
-            if self.run1(countNeeded: false, loop: loop) < 0 {
+            if self.run1v2() < 0 {
                 counter += 1
             }
             self.grid[pos.y][pos.x] = .empty
