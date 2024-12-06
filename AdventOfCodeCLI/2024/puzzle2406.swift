@@ -145,31 +145,19 @@ struct Puzzle2406 {
     @inlinable mutating func run1v2() -> Int {
         while(true) {
             let newPos = self.currentDirection.nextPos(from: self.currentPos)
-
-            // exit check
             guard newPos.x >= 0 && newPos.y >= 0 && newPos.x < grid[0].count && newPos.y < grid.count else {
                 return 1
             }
 
-            switch self.grid[newPos.y][newPos.x] {
-            case .empty, .visited, .start, .turnedToTop, .turnedToRight, .turnedToBottom, .turnedToLeft:
-                self.currentPos = newPos
-                self.grid[self.currentPos.y][self.currentPos.x] = .visited
-            case .wall:
-                self.grid[self.currentPos.y][self.currentPos.x] = {
-                    switch self.currentDirection {
-                    case .up: return .turnedToRight
-                    case .right: return .turnedToBottom
-                    case .down: return .turnedToLeft
-                    case .left: return .turnedToTop
-                    }
-                }()
+            if self.grid[newPos.y][newPos.x] == .wall {
                 let key = (self.currentPos.x << 12) | (self.currentPos.y << 4) | self.currentDirection.rawValue
                 if array[key] == loop {
                     return -1
                 }
                 array[key] = loop
                 self.currentDirection = self.currentDirection.nextDirection()
+            } else {
+                self.currentPos = newPos
             }
         }
     }
