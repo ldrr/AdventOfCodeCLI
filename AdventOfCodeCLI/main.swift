@@ -6,7 +6,9 @@
 //
 
 import Foundation
+//
+//print(measureExecutionTime {
+//    puzzle2406()
+//})
 
-print(measureExecutionTime {
-    puzzle2406()
-})
+puzzle2406()
