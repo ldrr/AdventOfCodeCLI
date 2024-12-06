@@ -12,6 +12,7 @@ func puzzle2406() {
     print(puzzle.run1(countNeeded: true))
     print(puzzle.run2())
 }
+
 class Puzzle2406 {
 
     let originalGrid: [[GridType]]
@@ -88,10 +89,6 @@ class Puzzle2406 {
         pos.x >= 0 && pos.y >= 0 && pos.x < grid[0].count && pos.y < grid.count
     }
 
-//    var gridDescription: String {
-//        self.grid.map { String($0.map { $0.rawValue }) + "\n" }.joined()
-//    }
-
     func run1(countNeeded: Bool = true) -> Int {
         var running = true
         var turnPositions: [Int: Bool] = [:]
@@ -103,12 +100,13 @@ class Puzzle2406 {
                 break
             }
 
-            let key = "\(self.currentPos.x),\(self.currentPos.y),\(self.currentDirection)".hashValue
-            if turnPositions[key] ?? false {
-                return -1
+            if(!countNeeded) {
+                let key = self.currentPos.x * 10000 + self.currentPos.y * 10 + self.currentDirection.rawValue
+                if turnPositions[key] ?? false {
+                    return -1
+                }
+                turnPositions[key] = true
             }
-            turnPositions[key] = true
-
             switch self.grid[newPos.y][newPos.x] {
             case .empty, .visited, .start, .turnedToTop, .turnedToRight, .turnedToBottom, .turnedToLeft:
                 self.currentPos = newPos
@@ -139,22 +137,18 @@ class Puzzle2406 {
     func run2() -> Int {
 
         var counter = 0
+        self.grid = self.originalGrid
 
         for pos in self.visitedPos {
-            self.grid = self.originalGrid
             self.currentPos = self.originalStart
             self.currentDirection = .up
-
-            switch self.grid[pos.y][pos.x] {
-            case .empty, .start:
-                self.grid[pos.y][pos.x] = .wall
-                if self.run1(countNeeded: false) < 0 {
-                    counter += 1
-                }
-            case .visited, .turnedToTop, .turnedToRight, .turnedToBottom, .turnedToLeft, .wall:
-                exit(1)
-                break
+            self.grid[pos.y][pos.x] = .wall
+            if self.run1(countNeeded: false) < 0 {
+                counter += 1
             }
+            self.grid[pos.y][pos.x] = .empty
+
+            print(pos)
         }
 
         return counter
