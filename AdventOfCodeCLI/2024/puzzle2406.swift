@@ -21,8 +21,8 @@ func puzzle2406() {
     }
 
     var puzzle = Puzzle2406(input: data)
-    _ = puzzle.run1(countNeeded: true)
-    print(puzzle.run2())
+    _ = puzzle.part1()
+    print(puzzle.part2())
 }
 
 struct Puzzle2406 {
@@ -75,14 +75,6 @@ struct Puzzle2406 {
         case wall // = "#"
         case start // = "^"
         case visited // = "X"
-        case turnedToTop // = "┗"
-        case turnedToRight // = "┏"
-        case turnedToBottom // = "┓"
-        case turnedToLeft // = "┛"
-
-        var isTurned: Bool {
-            self == .turnedToTop || self == .turnedToRight || self == .turnedToBottom || self == .turnedToLeft
-        }
 
         init(from: Character) {
             switch from {
@@ -100,59 +92,42 @@ struct Puzzle2406 {
         let x, y: Int
     }
 
-    @inlinable mutating func run1(countNeeded: Bool = true, loop: Int16 = 0) -> Int {
+    @inlinable mutating func part1() -> Int {
         while(true) {
             let newPos = self.currentDirection.nextPos(from: self.currentPos)
 
             // exit check
             guard newPos.x >= 0 && newPos.y >= 0 && newPos.x < grid[0].count && newPos.y < grid.count else {
-                guard countNeeded else { return 1 }
                 return self.grid.reduce(0) { partialResult, row in
                     partialResult + row.reduce(0, { partialResult, type in
-                        partialResult + (type == .visited || type.isTurned ? 1 : 0)
+                        partialResult + (type == .visited ? 1 : 0)
                     })
                 }
             }
 
-            switch self.grid[newPos.y][newPos.x] {
-            case .empty, .visited, .start, .turnedToTop, .turnedToRight, .turnedToBottom, .turnedToLeft:
+            if self.grid[newPos.y][newPos.x] == .wall {
+                self.currentDirection = self.currentDirection.nextDirection()
+            } else {
                 self.currentPos = newPos
-                if(countNeeded && self.grid[newPos.y][newPos.x] == .empty) {
+                if self.grid[newPos.y][newPos.x] == .empty {
                     visitedPos.append(newPos)
                 }
-                self.grid[self.currentPos.y][self.currentPos.x] = .visited
-            case .wall:
-                self.grid[self.currentPos.y][self.currentPos.x] = {
-                    switch self.currentDirection {
-                    case .up: return .turnedToRight
-                    case .right: return .turnedToBottom
-                    case .down: return .turnedToLeft
-                    case .left: return .turnedToTop
-                    }
-                }()
-                if(!countNeeded) {
-                    let key = (self.currentPos.x << 12) | (self.currentPos.y << 4) | self.currentDirection.rawValue
-                    if array[key] == loop {
-                        return -1
-                    }
-                    array[key] = loop
-                }
-                self.currentDirection = self.currentDirection.nextDirection()
             }
+            self.grid[self.currentPos.y][self.currentPos.x] = .visited
         }
     }
 
-    @inlinable mutating func run1v2() -> Int {
+    @inlinable mutating func part2isLoop() -> Int {
         while(true) {
             let newPos = self.currentDirection.nextPos(from: self.currentPos)
             guard newPos.x >= 0 && newPos.y >= 0 && newPos.x < grid[0].count && newPos.y < grid.count else {
-                return 1
+                return 0
             }
 
             if self.grid[newPos.y][newPos.x] == .wall {
                 let key = (self.currentPos.x << 12) | (self.currentPos.y << 4) | self.currentDirection.rawValue
                 if array[key] == loop {
-                    return -1
+                    return 1
                 }
                 array[key] = loop
                 self.currentDirection = self.currentDirection.nextDirection()
@@ -164,7 +139,7 @@ struct Puzzle2406 {
 
     var loop: Int16 = 1
 
-    mutating func run2() -> Int {
+    mutating func part2() -> Int {
 
         var counter = 0
         self.grid = self.originalGrid
@@ -173,9 +148,7 @@ struct Puzzle2406 {
             self.currentPos = self.originalStart
             self.currentDirection = .up
             self.grid[pos.y][pos.x] = .wall
-            if self.run1v2() < 0 {
-                counter += 1
-            }
+            counter += self.part2isLoop()
             self.grid[pos.y][pos.x] = .empty
             loop += 1
         }
