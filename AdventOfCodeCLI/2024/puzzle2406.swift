@@ -9,6 +9,7 @@ import Foundation
 
 func puzzle2406() {
     let puzzle = Puzzle2406(input: puzzle2406Data2)
+    print(puzzle.run1(countNeeded: true))
     print(puzzle.run2())
 }
 class Puzzle2406 {
@@ -18,9 +19,10 @@ class Puzzle2406 {
     var grid: [[GridType]]
     var currentPos = Pos(x: 0, y: 0)
     var currentDirection = Direction.up
+    var visitedPos: [Pos] = []
 
     init(input: String) {
-        self.grid = input.components(separatedBy: "\n").map { $0.map { GridType(rawValue: $0)! } }
+        self.grid = input.components(separatedBy: "\n").map { $0.map { GridType(from: $0) } }
         for y in 0..<grid.count {
             for x in 0..<grid[y].count {
                 if grid[y][x] == .start {
@@ -51,18 +53,29 @@ class Puzzle2406 {
         }
     }
 
-    enum GridType: Character {
-        case empty = "."
-        case wall = "#"
-        case start = "^"
-        case visited = "X"
-        case turnedToTop = "┗"
-        case turnedToRight = "┏"
-        case turnedToBottom = "┓"
-        case turnedToLeft = "┛"
+    enum GridType {
+        case empty // = "."
+        case wall // = "#"
+        case start // = "^"
+        case visited // = "X"
+        case turnedToTop // = "┗"
+        case turnedToRight // = "┏"
+        case turnedToBottom // = "┓"
+        case turnedToLeft // = "┛"
 
         var isTurned: Bool {
             self == .turnedToTop || self == .turnedToRight || self == .turnedToBottom || self == .turnedToLeft
+        }
+
+        init(from: Character) {
+            switch from {
+            case "#":
+                self = .wall
+            case "^":
+                self = .start
+            default:
+                self = .empty
+            }
         }
     }
 
@@ -75,15 +88,13 @@ class Puzzle2406 {
         pos.x >= 0 && pos.y >= 0 && pos.x < grid[0].count && pos.y < grid.count
     }
 
-    var gridDescription: String {
-        self.grid.map { String($0.map { $0.rawValue }) + "\n" }.joined()
-    }
+//    var gridDescription: String {
+//        self.grid.map { String($0.map { $0.rawValue }) + "\n" }.joined()
+//    }
 
     func run1(countNeeded: Bool = true) -> Int {
         var running = true
-        let maxSteps = self.grid.count * self.grid[0].count
-        var steps = 0
-        var turnPositions: [Pos: Direction] = [:]
+        var turnPositions: [Int: Bool] = [:]
 
         while(running) {
             let newPos = self.currentDirection.nextPos(from: self.currentPos)
@@ -91,14 +102,21 @@ class Puzzle2406 {
                 running = false
                 break
             }
-            switch (self.grid[newPos.y][newPos.x], currentDirection) {
-            case (.turnedToTop, .left), (.turnedToRight, .up), (.turnedToBottom, .right), (.turnedToLeft, .down):
+
+            let key = "\(self.currentPos.x),\(self.currentPos.y),\(self.currentDirection)".hashValue
+            if turnPositions[key] ?? false {
                 return -1
-            case (.empty, _), (.visited, _), (.start, _),
-                (.turnedToTop, _), (.turnedToRight, _), (.turnedToBottom, _), (.turnedToLeft, _):
+            }
+            turnPositions[key] = true
+
+            switch self.grid[newPos.y][newPos.x] {
+            case .empty, .visited, .start, .turnedToTop, .turnedToRight, .turnedToBottom, .turnedToLeft:
                 self.currentPos = newPos
+                if(countNeeded && self.grid[newPos.y][newPos.x] == .empty) {
+                    visitedPos.append(newPos)
+                }
                 self.grid[self.currentPos.y][self.currentPos.x] = .visited
-            case (.wall, _):
+            case .wall:
                 self.grid[self.currentPos.y][self.currentPos.x] = {
                     switch self.currentDirection {
                     case .up: return .turnedToRight
@@ -109,12 +127,6 @@ class Puzzle2406 {
                 }()
                 self.currentDirection = self.currentDirection.nextDirection()
             }
-
-            steps += 1
-            if steps >= maxSteps {
-                return -1
-            }
-
         }
         guard countNeeded else { return 1 }
         return self.grid.reduce(0) { partialResult, row in
@@ -125,25 +137,26 @@ class Puzzle2406 {
     }
 
     func run2() -> Int {
+
         var counter = 0
-        for y in 0..<self.grid.count {
-            for x in 0..<self.grid[y].count {
 
-                self.grid = self.originalGrid
-                self.currentPos = self.originalStart
-                self.currentDirection = .up
+        for pos in self.visitedPos {
+            self.grid = self.originalGrid
+            self.currentPos = self.originalStart
+            self.currentDirection = .up
 
-                switch self.grid[y][x] {
-                case .empty, .start:
-                    self.grid[y][x] = .wall
-                    if self.run1(countNeeded: false) < 0 {
-                        counter += 1
-                    }
-                case .visited, .turnedToTop, .turnedToRight, .turnedToBottom, .turnedToLeft, .wall:
-                    break
+            switch self.grid[pos.y][pos.x] {
+            case .empty, .start:
+                self.grid[pos.y][pos.x] = .wall
+                if self.run1(countNeeded: false) < 0 {
+                    counter += 1
                 }
+            case .visited, .turnedToTop, .turnedToRight, .turnedToBottom, .turnedToLeft, .wall:
+                exit(1)
+                break
             }
         }
+
         return counter
     }
 }
