@@ -1011,14 +1011,6 @@ func puzzle2401() {
 92147   87526
 """
 
-    let sampleData = """
-3   4
-4   3
-2   5
-1   3
-3   9
-3   3
-"""
 
     let data = realData.split(separator: "\n").map {
          $0.split(separator: "   ").map { Int($0)! }
