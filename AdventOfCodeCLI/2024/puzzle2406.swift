@@ -116,13 +116,6 @@ struct Puzzle2406 {
                 }
             }
 
-            if(!countNeeded) {
-                let key = self.currentPos.x * 10000 + self.currentPos.y * 10 + self.currentDirection.rawValue
-                if turnPositions[key] ?? false {
-                    return -1
-                }
-                turnPositions[key] = true
-            }
             switch self.grid[newPos.y][newPos.x] {
             case .empty, .visited, .start, .turnedToTop, .turnedToRight, .turnedToBottom, .turnedToLeft:
                 self.currentPos = newPos
@@ -139,6 +132,13 @@ struct Puzzle2406 {
                     case .left: return .turnedToTop
                     }
                 }()
+                if(!countNeeded) {
+                    let key = self.currentPos.x * 10000 + self.currentPos.y * 10 + self.currentDirection.rawValue
+                    if turnPositions[key] ?? false {
+                        return -1
+                    }
+                    turnPositions[key] = true
+                }
                 self.currentDirection = self.currentDirection.nextDirection()
             }
         }
