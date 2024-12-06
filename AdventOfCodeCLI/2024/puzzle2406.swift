@@ -33,7 +33,7 @@ struct Puzzle2406 {
     var currentPos = Pos(x: 0, y: 0)
     var currentDirection = Direction.up
     var visitedPos: [Pos] = []
-    var turnPositions: [Int: Bool] = [:]
+    var array = Array(repeating: false, count: 250000)
 
     init(input: String) {
         self.grid = input.components(separatedBy: "\n").compactMap {
@@ -103,7 +103,7 @@ struct Puzzle2406 {
     @inlinable mutating func run1(countNeeded: Bool = true) -> Int {
         // var running = true
 
-        turnPositions = [:]
+        array = Array(repeating: false, count: 250000)
 
         while(true) {
             let newPos = self.currentDirection.nextPos(from: self.currentPos)
@@ -133,11 +133,11 @@ struct Puzzle2406 {
                     }
                 }()
                 if(!countNeeded) {
-                    let key = self.currentPos.x * 10000 + self.currentPos.y * 10 + self.currentDirection.rawValue
-                    if turnPositions[key] ?? false {
+                    let key = (self.currentPos.x * 150 + self.currentPos.y) * 10 + self.currentDirection.rawValue
+                    if array[key] {
                         return -1
                     }
-                    turnPositions[key] = true
+                    array[key] = true
                 }
                 self.currentDirection = self.currentDirection.nextDirection()
             }
