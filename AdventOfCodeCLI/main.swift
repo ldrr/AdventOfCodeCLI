@@ -7,6 +7,7 @@
 
 import Foundation
 //
+
 //print(measureExecutionTime {
 //    puzzle2406()
 //})

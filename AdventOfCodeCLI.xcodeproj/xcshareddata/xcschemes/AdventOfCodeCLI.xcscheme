@@ -50,6 +50,12 @@
             ReferencedContainer = "container:AdventOfCodeCLI.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Users/ldrr/Developer/AdventOfCodeCLI/AdventOfCodeCLI/input.txt"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

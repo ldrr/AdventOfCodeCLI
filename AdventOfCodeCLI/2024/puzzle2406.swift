@@ -20,12 +20,12 @@ func puzzle2406() {
         exit(1)
     }
 
-    let puzzle = Puzzle2406(input: data)
+    var puzzle = Puzzle2406(input: data)
     _ = puzzle.run1(countNeeded: true)
     print(puzzle.run2())
 }
 
-class Puzzle2406 {
+struct Puzzle2406 {
 
     let originalGrid: [[GridType]]
     let originalStart: Pos
@@ -33,6 +33,7 @@ class Puzzle2406 {
     var currentPos = Pos(x: 0, y: 0)
     var currentDirection = Direction.up
     var visitedPos: [Pos] = []
+    var turnPositions: [Int: Bool] = [:]
 
     init(input: String) {
         self.grid = input.components(separatedBy: "\n").compactMap {
@@ -55,11 +56,11 @@ class Puzzle2406 {
     enum Direction: Int {
         case up, right, down, left
 
-        func nextDirection() -> Self {
+        @inlinable func nextDirection() -> Self {
             Direction(rawValue: self.rawValue.advanced(by: 1)) ?? .up
         }
 
-        func nextPos(from pos: Pos) -> Pos {
+        @inlinable func nextPos(from pos: Pos) -> Pos {
             switch self {
             case .up: return Pos(x: pos.x, y: pos.y - 1)
             case .down: return Pos(x: pos.x, y: pos.y + 1)
@@ -69,7 +70,7 @@ class Puzzle2406 {
         }
     }
 
-    enum GridType {
+    enum GridType: Int {
         case empty // = "."
         case wall // = "#"
         case start // = "^"
@@ -95,24 +96,24 @@ class Puzzle2406 {
         }
     }
 
-
-    struct Pos: Hashable {
+    struct Pos {
         let x, y: Int
     }
 
-    func isValid(pos: Pos) -> Bool {
-        pos.x >= 0 && pos.y >= 0 && pos.x < grid[0].count && pos.y < grid.count
-    }
+    @inlinable mutating func run1(countNeeded: Bool = true) -> Int {
+        // var running = true
 
-    func run1(countNeeded: Bool = true) -> Int {
-        var running = true
-        var turnPositions: [Int: Bool] = [:]
+        turnPositions = [:]
 
-        while(running) {
+        while(true) {
             let newPos = self.currentDirection.nextPos(from: self.currentPos)
-            guard isValid(pos: newPos) else {
-                running = false
-                break
+            guard newPos.x >= 0 && newPos.y >= 0 && newPos.x < grid[0].count && newPos.y < grid.count else {
+                guard countNeeded else { return 1 }
+                return self.grid.reduce(0) { partialResult, row in
+                    partialResult + row.reduce(0, { partialResult, type in
+                        partialResult + (type == .visited || type.isTurned ? 1 : 0)
+                    })
+                }
             }
 
             if(!countNeeded) {
@@ -141,15 +142,9 @@ class Puzzle2406 {
                 self.currentDirection = self.currentDirection.nextDirection()
             }
         }
-        guard countNeeded else { return 1 }
-        return self.grid.reduce(0) { partialResult, row in
-            partialResult + row.reduce(0, { partialResult, type in
-                partialResult + (type == .visited || type.isTurned ? 1 : 0)
-            })
-        }
     }
 
-    func run2() -> Int {
+    mutating func run2() -> Int {
 
         var counter = 0
         self.grid = self.originalGrid
