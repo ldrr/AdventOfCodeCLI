@@ -33,7 +33,7 @@ struct Puzzle2406 {
     var currentPos = Pos(x: 0, y: 0)
     var currentDirection = Direction.up
     var visitedPos: [Pos] = []
-    var array: [Int16] = Array(repeating: 0, count: 250000)
+    var array: [Int16] = Array(repeating: 0, count: 2500000)
 
     init(input: String) {
         self.grid = input.components(separatedBy: "\n").compactMap {
@@ -131,7 +131,7 @@ struct Puzzle2406 {
                     }
                 }()
                 if(!countNeeded) {
-                    let key = (self.currentPos.x << 8) | (self.currentPos.y << 2) | self.currentDirection.rawValue
+                    let key = (self.currentPos.x << 12) | (self.currentPos.y << 4) | self.currentDirection.rawValue
                     if array[key] == loop {
                         return -1
                     }
