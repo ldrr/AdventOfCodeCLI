@@ -64,7 +64,7 @@ func puzzle2405() {
     print(puzzle1(data: puzzle2405Data))
 }
 
-let puzzle2405Demo1 = """
+private let puzzle2405Demo1 = """
 47|53
 97|13
 97|61
@@ -95,7 +95,7 @@ let puzzle2405Demo1 = """
 97,13,75,29,47
 """
 
-let puzzle2405Data = """
+private let puzzle2405Data = """
 69|26
 93|46
 93|43

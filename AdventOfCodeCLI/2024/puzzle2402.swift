@@ -54,7 +54,7 @@ func puzzle2402() {
     print(levels.filter { isSafe(level: $0) }.count)
 }
 
-let input2402 = """
+private let input2402 = """
 6 8 11 12 14 16 18 16
 73 76 79 80 81 84 86 86
 32 33 34 37 40 44
