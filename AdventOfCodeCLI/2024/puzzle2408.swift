@@ -38,7 +38,7 @@ func puzzle2408() {
         }
     }
 
-    func part1(data: String) -> Int {
+    func part1(data: String, continues: Bool) -> Int {
         grid = data.components(separatedBy: "\n").map { $0.map { Node(char: $0) }}
 
         for y in 0..<grid.count {
@@ -46,11 +46,13 @@ func puzzle2408() {
                 let node = grid[y][x]
                 if !node.isEmpty, let otherNodes = findPartners(of: node, x: x, y: y) {
                     for node in otherNodes {
-                        let distance = Pos(x: node.x - x, y: node.y - y)
+                        var distance = Pos(x: node.x - x, y: node.y - y)
+                        let originalDistance = distance
+                        var created = false
+                        repeat {
+                            created = false
+                            var x1 = 0, x2 = 0, y1 = 0, y2 = 0
 
-                        var x1 = 0, x2 = 0, y1 = 0, y2 = 0
-
-                        if distance.x > 0 {
                             x1 = node.x + distance.x
                             x2 = x - distance.x
                             if distance.y > 0 {
@@ -60,33 +62,25 @@ func puzzle2408() {
                                 y1 = y - distance.y
                                 y2 = node.y + distance.y
                             }
-                        } else {
-                            x1 = x - distance.x
-                            x2 = node.x + distance.x
 
-                            if distance.y > 0 {
-                                y1 = y - distance.y
-                                y2 = node.y + distance.y
-                            } else {
-                                y1 = y - distance.y
-                                y2 = node.y + distance.y
+                            let pos1 = Pos(x: x1, y: y1)
+                            let pos2 = Pos(x: x2, y: y2)
+
+                            for newPos in [pos1, pos2] {
+                                if newPos.x < 0 || newPos.y < 0 || grid.count <= newPos.y || grid[0].count <= newPos.x {
+                                    continue
+                                }
+                                grid[newPos.y][newPos.x].antinode = true
+
+                                created = true
                             }
-                        }
-
-                        let pos1 = Pos(x: x1, y: y1)
-                        let pos2 = Pos(x: x2, y: y2)
-
-                        for newPos in [pos1, pos2] {
-                            if newPos.x < 0 || newPos.y < 0 || grid.count <= newPos.y || grid[0].count <= newPos.x {
-                                continue
-                            }
-                            grid[newPos.y][newPos.x].antinode = true
-                        }
+                            distance = Pos(x: distance.x + originalDistance.x, y: distance.y + originalDistance.y)
+                        } while(created && continues)
                     }
                 }
             }
         }
-        return countAntinodes()
+        return countAntinodes(withAntennas: continues)
     }
 
     func findPartners(of node: Node, x startX: Int, y startY: Int) -> [Pos]? {
@@ -107,10 +101,10 @@ func puzzle2408() {
         return partners.count > 0 ? partners : nil
     }
 
-    func countAntinodes() -> Int {
+    func countAntinodes(withAntennas: Bool) -> Int {
         return grid.reduce(0) { partialResult, row in
             partialResult + row.reduce(0, { partialResult, node in
-                partialResult + (node.antinode ? 1 : 0)
+                partialResult + (node.antinode || (withAntennas && !node.isEmpty) ? 1 : 0)
             })
         }
     }
@@ -122,20 +116,22 @@ func puzzle2408() {
         print(arrayAsString)
     }
 
-    print(part1(data: input2))
-    printGrid()
+    print(part1(data: input2, continues: true))
+    // printGrid()
 
 }
 
 private let input0 = """
-........
-........
-...0.1..
-........
-...1.0..
-........
-........
-........
+T.........
+...T......
+.T........
+..........
+..........
+..........
+..........
+..........
+..........
+..........
 """
 
 private let input1 = """
