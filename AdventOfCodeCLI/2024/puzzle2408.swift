@@ -51,20 +51,9 @@ func puzzle2408() {
                         var created = false
                         repeat {
                             created = false
-                            var x1 = 0, x2 = 0, y1 = 0, y2 = 0
 
-                            x1 = node.x + distance.x
-                            x2 = x - distance.x
-                            if distance.y > 0 {
-                                y1 = node.y + distance.y
-                                y2 = y - distance.y
-                            } else {
-                                y1 = y - distance.y
-                                y2 = node.y + distance.y
-                            }
-
-                            let pos1 = Pos(x: x1, y: y1)
-                            let pos2 = Pos(x: x2, y: y2)
+                            let pos1 = Pos(x: node.x + distance.x, y: node.y + distance.y)
+                            let pos2 = Pos(x: x - distance.x, y: y - distance.y)
 
                             for newPos in [pos1, pos2] {
                                 if newPos.x < 0 || newPos.y < 0 || grid.count <= newPos.y || grid[0].count <= newPos.x {
