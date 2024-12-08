@@ -22,7 +22,7 @@ func puzzle2407() {
         let pieces = data.map {
             PuzzlePiece(result: $0[0], operants: Array($0.suffix(from: 1)))
         }
-        let count1 = pieces.reduce(0) { partialResult, piece in
+        let _ = pieces.reduce(0) { partialResult, piece in
             if testIsValid(testValue: piece.result, current: 0, restOperants: piece.operants) {
                 return partialResult + piece.result
             }
