@@ -46,13 +46,14 @@ func puzzle2409() {
     }
 
     func part1() -> Int {
+        var emptyIndex = disc.firstIndex(where: { $0.id == nil })!
         for (index, _) in disc.enumerated().filter({ $0.element.id != nil }).reversed() {
-            if let emptyIndex = disc.firstIndex(where: { $0.id == nil }) {
-                if index > emptyIndex {
-                    disc.swapElements(at: index, and: emptyIndex)
-                } else {
-                    break
-                }
+            (disc[index], disc[emptyIndex]) = (disc[emptyIndex], disc[index])
+            while(disc[emptyIndex].id != nil) {
+                emptyIndex += 1
+            }
+            if emptyIndex > index {
+                break
             }
         }
         var checksum = 0
@@ -70,7 +71,7 @@ func puzzle2409() {
                 if emptyIndex < index {
                     let originalEmptyBlockLength = disc[emptyIndex].count
                     for i in 0..<fileBlock.count {
-                        disc.swapElements(at: index + i, and: emptyIndex + i)
+                        (disc[index + i], disc[emptyIndex + i]) = (disc[emptyIndex + i], disc[index + i])
                     }
                     if originalEmptyBlockLength > fileBlock.count {
                         disc[emptyIndex + fileBlock.count].start = true
