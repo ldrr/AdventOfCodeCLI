@@ -17,6 +17,8 @@ func puzzle2409() {
         }
 
         let id: Int?
+        var count: Int
+        var start: Bool
     }
 
     func printDisc() {
@@ -27,11 +29,16 @@ func puzzle2409() {
 
     var disc: [FileBlock] = []
 
-//    let data = "2333133121414131402"
     var even = true
     var counter = 0
     puzzleData.forEach { character in
-        disc.append(contentsOf: Array(repeating: FileBlock(id: even ? counter : nil), count: Int(String(character))!))
+        let count = Int(String(character))!
+        if count > 0 {
+            disc.append(FileBlock(id: even ? counter : nil, count: count, start: true))
+            if count - 1 > 0 {
+                disc.append(contentsOf: Array(repeating: FileBlock(id: even ? counter : nil, count: count, start: false), count: count - 1))
+            }
+        }
         if even {
             counter += 1
         }
@@ -39,8 +46,8 @@ func puzzle2409() {
     }
 
     func part1() -> Int {
-        for (index, fileBlock) in disc.enumerated().reversed() {
-            if fileBlock.id != nil, let emptyIndex = disc.firstIndex(where: { $0.id == nil }) {
+        for (index, _) in disc.enumerated().filter({ $0.element.id != nil }).reversed() {
+            if let emptyIndex = disc.firstIndex(where: { $0.id == nil }) {
                 if index > emptyIndex {
                     disc.swapElements(at: index, and: emptyIndex)
                 } else {
@@ -56,6 +63,34 @@ func puzzle2409() {
         }
         return checksum
     }
+
+    func part2() -> Int {
+        for (index, fileBlock) in disc.enumerated().filter({ $0.element.start && $0.element.id != nil }).reversed() {
+            if let emptyIndex = disc.firstIndex(where: { $0.id == nil && $0.start && $0.count >= fileBlock.count }) {
+                if emptyIndex < index {
+                    let originalEmptyBlockLength = disc[emptyIndex].count
+                    for i in 0..<fileBlock.count {
+                        disc.swapElements(at: index + i, and: emptyIndex + i)
+                    }
+                    if originalEmptyBlockLength > fileBlock.count {
+                        disc[emptyIndex + fileBlock.count].start = true
+                        for i in fileBlock.count..<originalEmptyBlockLength {
+                            disc[emptyIndex + i].count = originalEmptyBlockLength - fileBlock.count
+                        }
+                    }
+                }
+            }
+        }
+
+        var checksum = 0
+        for (index, fileBlock) in disc.enumerated() {
+            if let id = fileBlock.id {
+                checksum += (id * index)
+            }
+        }
+        return checksum
+    }
+
     print(part1())
 }
 
