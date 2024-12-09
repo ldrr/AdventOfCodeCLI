@@ -90,4 +90,12 @@ extension Array {
     func splat() -> (Element,Element,Element,Element,Element) {
         return (self[0],self[1],self[2],self[3],self[4])
     }
+
+    mutating func swapElements(at index1: Int, and index2: Int) {
+        guard index1 >= 0, index2 >= 0, index1 < self.count, index2 < self.count else {
+            print("Invalid indices")
+            return
+        }
+        (self[index1], self[index2]) = (self[index2], self[index1])
+    }
 }
