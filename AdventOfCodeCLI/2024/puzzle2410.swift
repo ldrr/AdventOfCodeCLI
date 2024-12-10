@@ -42,7 +42,7 @@ func puzzle2410() {
 
         if grid[y][x] == 9 && height == 9 {
             peakPositions.insert(Pos(x: x, y: y))
-            // score += 1
+            score += 1
             return
         }
         if x > 0 && inDirection != .right {
@@ -59,23 +59,30 @@ func puzzle2410() {
         }
     }
 
+    var score = 0
+
     func part1() -> Int {
-        var score = 0
+        var peaks = 0
         for y in 0..<grid.count {
             for x in 0..<grid[0].count {
                 if grid[y][x] == 0 {
                     findNext(score: &score, height: 0, fromX: x, fromY: y, inDirection: nil)
-                    score += peakPositions.count
+                    peaks += peakPositions.count
                     peakPositions = []
                 }
             }
         }
+        return peaks
+    }
+
+    func part2() -> Int {
         return score
     }
 
     let grid = input2.components(separatedBy: "\n").map { $0.map { Int(String($0))!} }
 
     print(part1())
+    print(part2())
 }
 
 private let input1 = """
