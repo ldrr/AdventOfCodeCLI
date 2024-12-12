@@ -8,19 +8,8 @@
 import Foundation
 
 func puzzle2412() {
-
-    struct Region {
-        var area: Int
-        var perimeter: Int
-    }
-
     enum Side {
-        case left, right, top, bottom, horizontal, vertical
-    }
-
-    struct FenceSide: Hashable {
-        let side: Side
-        let position: Double
+        case left, right, top, bottom
     }
 
     struct Pos: Hashable {
@@ -28,10 +17,9 @@ func puzzle2412() {
         let y: Int
     }
 
-    func part1(grid: [[String]]) -> Int {
+    func part1And2(grid: [[String]]) -> (Int, Int) {
 
         var currentPerimeter = 0
-        var sides = Set<FenceSide>()
         let width = grid[0].count
         let height = grid.count
         var currentArea: [Pos] = []
@@ -118,31 +106,30 @@ func puzzle2412() {
             return area + 1
         }
 
-        var price = 0
+        var pricePart1 = 0, pricePart2 = 0
         var visited: [[Bool]] = Array(repeating: Array(repeating: false, count: grid[0].count), count: grid.count)
         for y in 0..<grid.count {
             for x in 0..<grid[0].count {
                 if !visited[y][x] {
 
-                    let type = grid[y][x]
                     currentPerimeter = 0
-                    sides.removeAll()
+                    currentArea = []
 
-                    let area = findNext(x: x, y: y, type: type, fromSide: nil)
+                    let area = findNext(x: x, y: y, type: grid[y][x], fromSide: nil)
+
                     visited[y][x] = true
                     let corners = findCornersOfCurrentArea()
-//                    print("Area of \(type) is \(area), perimeter = \(currentPerimeter) with \(corners) corners")
 
-                    currentArea = []
-                    price += (area * corners)
+                    pricePart1 += (area * currentPerimeter)
+                    pricePart2 += (area * corners)
                 }
             }
         }
-        return price
+        return (pricePart1, pricePart2)
     }
 
     let grid = data.components(separatedBy: "\n").map { $0.map { String($0) }}
-    print(part1(grid: grid))
+    print(part1And2(grid: grid))
 }
 
 private let data1 = """
