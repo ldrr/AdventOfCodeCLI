@@ -9,7 +9,7 @@ import Foundation
 //
 
 print(measureExecutionTime {
-    puzzle2411()
+    puzzle2412()
 })
 
 //puzzle2406()
