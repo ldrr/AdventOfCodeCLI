@@ -28,47 +28,74 @@ func puzzle2413() {
         )
     }
 
-    func findSolution(for arcade: Arcade) -> (Int, Int)? {
-        var bestA: Int?
-        var bestB: Int?
+    func gcd(_ a: Int, _ b: Int) -> Int
+    {
+        var b = b, a = a
+        while (b != 0) {
+            let temp = b
+            b = a % b
+            a = temp
+        }
+        return a;
+    }
 
-        // Iterate over possible values for b
-        for b in 0..<100 { // Range can be adjusted
-            // Calculate `a` for each equation
-            let a1 = (arcade.targetX - arcade.x2 * b) / arcade.x1
-            let a2 = (arcade.targetY - arcade.y2 * b) / arcade.y1
+    func lcm(_ a: Int, _ b: Int) -> Int
+    {
+        let gcd = gcd(a, b)
+        let lcm = (a * b) / gcd
+        return lcm
+    }
 
-            if a1 == a2, a1 <= 100 {
-                // Check if both equations have the same `a` and if `a` is an integer
-                if arcade.x1 * a1 + arcade.x2 * b == arcade.targetX,
-                    arcade.y1 * a2 + arcade.y2 * b == arcade.targetY {
+    func isDecimalInteger(_ value: Decimal) -> Bool {
+        let intValue = NSDecimalNumber(decimal: value).intValue
+        return value.isEqual(to: Decimal(intValue))
+    }
 
-                    let a = a1
-                    // Update if this `a` is the smallest
-                    if let currentBestA = bestA {
-                        if a < currentBestA {
-                            bestA = a
-                            bestB = b
-                        }
-                    } else {
-                        bestA = a
-                        bestB = b
-                    }
-                }
-            }
+    func solve(ax: Int, ay: Int, bx: Int, by: Int, px: Int, py: Int) -> Int? {
+
+        let ma = lcm(ax, ay)
+        let mx = ma / ax
+        let my = ma / ay
+
+        let b = Decimal(mx * px - my * py) / Decimal(mx * bx - my * by)
+        let a = (Decimal(px) - b * Decimal(bx)) / Decimal(ax)
+
+        guard isDecimalInteger(a), b > 0, a > 0 else {
+            return 0
         }
 
-        guard let bestA, let bestB else {
-            return nil
-        }
-        return (bestA, bestB)
+        return NSDecimalNumber(decimal: (a * 3) + b).intValue
     }
 
     func part1(arcades: [Arcade]) -> Int {
         var total = 0
         for arcade in arcades {
-            if let price = findSolution(for: arcade) {
-                total += (price.0 * 3 + price.1)
+            if let price = solve(
+                ax: arcade.x1,
+                ay: arcade.y1,
+                bx: arcade.x2,
+                by: arcade.y2,
+                px: arcade.targetX,
+                py: arcade.targetY
+            ) {
+                total += price
+            }
+        }
+        return total
+    }
+
+    func part2(arcades: [Arcade]) -> Int {
+        var total = 0
+        for arcade in arcades {
+            if let price = solve(
+                ax: arcade.x1,
+                ay: arcade.y1,
+                bx: arcade.x2,
+                by: arcade.y2,
+                px: arcade.targetX + 10000000000000,
+                py: arcade.targetY + 10000000000000
+            ) {
+                total += price
             }
         }
         return total
@@ -88,7 +115,15 @@ func puzzle2413() {
     }
 
     print(part1(arcades: arcades))
+    print(part2(arcades: arcades))
 }
+
+private let data2="""
+Button A: X+2, Y+2
+Button B: X+1, Y+1
+Prize: X=10, Y=10
+
+"""
 
 private let data1="""
 Button A: X+94, Y+34
