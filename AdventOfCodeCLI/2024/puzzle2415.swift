@@ -24,6 +24,25 @@ class Warehouse: CustomStringConvertible {
     struct Pos: Equatable {
         let x: Int
         let y: Int
+
+        var left: Pos {
+            Self(x: x-1, y: y)
+        }
+        var right: Pos {
+            Self(x: x+1, y: y)
+        }
+        func `in`(direction: Step) -> Pos {
+            switch direction {
+            case .left:
+                return Self(x: self.x - 1, y: self.y)
+            case .right:
+                return Self(x: self.x + 1, y: self.y)
+            case .up:
+                return Self(x: self.x, y: self.y - 1)
+            case .down:
+                return Self(x: self.x, y: self.y + 1)
+            }
+        }
     }
 
     enum Tile: Character, CustomStringConvertible {
@@ -88,18 +107,7 @@ class Warehouse: CustomStringConvertible {
     }
 
     func nextPosFrom(pos: Pos, with step: Step) -> Pos? {
-        let nextPos: Pos = {
-            switch step {
-            case .left:
-                return Pos(x: pos.x - 1, y: pos.y)
-            case .right:
-                return Pos(x: pos.x + 1, y: pos.y)
-            case .up:
-                return Pos(x: pos.x, y: pos.y - 1)
-            case .down:
-                return Pos(x: pos.x, y: pos.y + 1)
-            }
-        }()
+        let nextPos = pos.in(direction: step)
         guard nextPos.x >= 0, nextPos.y >= 0, nextPos.x < plan[0].count, nextPos.y < plan.count else {
             return nil
         }
@@ -151,6 +159,80 @@ class Warehouse: CustomStringConvertible {
         return true
     }
 
+    typealias BoxPosition =  (pos: Pos, tile: Tile)
+
+    func moveMoreBoxes(_ step: Step, boxes: [BoxPosition]) -> Bool {
+        var newBoxes: [BoxPosition] = []
+        var emptyCount = 0
+        for box in boxes {
+            let nextPos = self.nextPosFrom(pos: box.pos, with: step)!
+            let nextTile = tile(at: nextPos)
+            if nextTile == .wall {
+                return false
+            }
+            switch (box.tile, nextTile) {
+            case (.leftBox, .rightBox):
+                newBoxes.append(contentsOf: [
+                    (nextPos, .rightBox),
+                    (nextPos.left, .leftBox)
+                ])
+                break
+            case (.rightBox, .leftBox):
+                newBoxes.append(contentsOf: [
+                    (nextPos, .leftBox),
+                    (nextPos.right, .rightBox)
+                ])
+                break
+            case (.leftBox, .leftBox), (.rightBox, .rightBox):
+                newBoxes.append((nextPos, nextTile))
+                break
+            case (_, .empty):
+                emptyCount += 1
+            default:
+                break
+            }
+        }
+        if emptyCount == boxes.count {
+            // move boxes
+            for box in boxes {
+                self.set(tile: box.tile, at: box.pos.in(direction: step))
+                self.set(tile: .empty, at: box.pos)
+            }
+        } else {
+            if moveMoreBoxes(step, boxes: newBoxes) {
+                for box in boxes {
+                    self.set(tile: box.tile, at: box.pos.in(direction: step))
+                    self.set(tile: .empty, at: box.pos)
+                }
+                return true
+            }
+            return false
+        }
+        return true
+    }
+
+    func moveBoxesUpDown(_ step: Step, from: Pos) -> Bool {
+        guard let nextPos = self.nextPosFrom(pos: from, with: step) else {
+            fatalError("we ran outside the warehouse")
+        }
+        var newBoxes: [BoxPosition] = []
+        let nextTile = tile(at: nextPos)
+        newBoxes.append((nextPos, nextTile))
+        switch nextTile {
+        case .leftBox:
+            newBoxes.append((nextPos.right, .rightBox))
+            return moveMoreBoxes(step, boxes: newBoxes)
+        case .rightBox:
+            newBoxes.append((nextPos.left, .leftBox))
+            return moveMoreBoxes(step, boxes: newBoxes)
+        case .wall:
+            return false
+        case .bot, .box, .empty:
+            break // impossible
+        }
+        return true
+    }
+
     func doNextStepForPart2() -> Bool {
         guard !self.steps.isEmpty else {
             return false
@@ -194,7 +276,9 @@ class Warehouse: CustomStringConvertible {
                     nextSearchPos = nextBoxPos
                 }
             } else {
-
+                if self.moveBoxesUpDown(step, from: self.bot) {
+                    self.bot = nextPos
+                }
             }
         case .wall:
             return true // can't move
@@ -242,26 +326,25 @@ func puzzle2415() {
         warehouse.extendPlan()
         print(warehouse)
         while(warehouse.doNextStepForPart2()) {
-            print(warehouse)
+            // print(warehouse)
         }
         return warehouse.checksum
     }
 
     print(part1(data: data1))
-    print(part2(data: data1))
+    print(part2(data: data))
 }
 
 private let data1 = """
-########
-#..O.O.#
-##@.O..#
-#...O..#
-#.#.O..#
-#...O..#
-#......#
-########
+#######
+#...#.#
+#.....#
+#..OO@#
+#..O..#
+#.....#
+#######
 
-<^^>>>vv<v>>v<<
+<vv<<^^<<^^
 """
 
 private let data2 = """
