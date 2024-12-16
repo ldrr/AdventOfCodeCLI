@@ -328,6 +328,7 @@ func puzzle2415() {
         while(warehouse.doNextStepForPart2()) {
             // print(warehouse)
         }
+        print(warehouse)
         return warehouse.checksum
     }
 
