@@ -20,14 +20,31 @@ struct PriorityQueue<Element: Hashable> {
     var isEmpty: Bool {
         return elements.isEmpty
     }
+
+    var count: Int {
+        elements.count
+    }
 }
 
-class Puzzle2416 {
+class Puzzle2416: CustomStringConvertible {
+
+    var description: String {
+        var desc = ""
+        for y in 0..<plan.count {
+            for x in 0..<plan[0].count {
+                desc.append(plan[y][x].rawValue)
+            }
+            desc.append("\n")
+        }
+        return desc
+    }
+
     enum Tile: Character {
         case wall = "#"
         case empty = "."
         case start = "S"
         case end = "E"
+        case visited = "O"
     }
 
     struct Pos: Hashable, CustomStringConvertible {
@@ -51,8 +68,8 @@ class Puzzle2416 {
         }
     }
 
-    enum Direction: CaseIterable, Hashable {
-        case up, right, left, down
+    enum Direction: Int, CaseIterable, Hashable {
+        case up, right, down, left
     }
 
     struct Vector: Hashable {
@@ -65,12 +82,16 @@ class Puzzle2416 {
         }
     }
 
-    let plan: [[Tile]]
+    var plan: [[Tile]]
     var start: Pos!, end: Pos!
     var costMap: [Pos: Int] = [:]
 
     func tile(at pos: Pos) -> Tile {
         self.plan[pos.y][pos.x]
+    }
+
+    func set(tile: Tile, at pos: Pos) {
+        self.plan[pos.y][pos.x] = tile
     }
 
     init(input: String) {
@@ -89,10 +110,6 @@ class Puzzle2416 {
                 }
             }
         }
-    }
-
-    func moveCost(from: Pos, to: Pos) -> Int {
-        return 1 // Flat cost for moving
     }
 
     func rotationCost(current: Direction, target: Direction) -> Int {
@@ -145,9 +162,36 @@ class Puzzle2416 {
 }
 
 func puzzle2416() {
-    let puzzle = Puzzle2416(input: data)
+    let puzzle = Puzzle2416(input: shortPuzzle)
     print(puzzle.part1())
 }
+
+private let shortPuzzle = """
+########
+#.....E#
+#..#.###
+#.....##
+##.#..##
+#S....##
+########
+"""
+private let data2 = """
+###############
+#.......#....E#
+#.#.###.#.#.#.#
+#.....#.#.....#
+#.###.#####.###
+#.#.#.......#.#
+#.#.#####.###.#
+#...........#.#
+###.#.#####.#.#
+#...#.....#.#.#
+#.#.#.###.#.#.#
+#.....#...#.#.#
+#.###.#.#.#.#.#
+#S..#.....#...#
+###############
+"""
 
 private let data1 = """
 #################
