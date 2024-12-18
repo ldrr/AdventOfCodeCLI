@@ -94,6 +94,7 @@ class Puzzle2418 {
 
             if idx >= start {
                 guard dijkstra() != nil else {
+                    print(idx)
                     return pos
                 }
             }
