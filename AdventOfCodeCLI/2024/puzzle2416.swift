@@ -144,7 +144,7 @@ class Puzzle2416: CustomStringConvertible {
                     continue // Skip invalid or blocked positions
                 }
 
-                let newCost = currentCost + moveCost(from: vector.pos, to: next) + rotationCostValue
+                let newCost = currentCost + 1 + rotationCostValue
 
                 if newCost < costMap[next, default: Int.max] {
                     costMap[next] = newCost

@@ -15,6 +15,7 @@
 		A73EED112D0D4D3000F59632 /* puzzle2414.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73EED102D0D4D2C00F59632 /* puzzle2414.swift */; };
 		A73EED342D0EA14300F59632 /* puzzle2415.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73EED332D0EA14000F59632 /* puzzle2415.swift */; };
 		A73EED3B2D1001AA00F59632 /* puzzle2416.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73EED3A2D1001A200F59632 /* puzzle2416.swift */; };
+		A73EED3D2D12FF4C00F59632 /* puzzle2418.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73EED3C2D12FF4800F59632 /* puzzle2418.swift */; };
 		A7606D932B20455500FF0EC5 /* puzzle6.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606D922B20455500FF0EC5 /* puzzle6.swift */; };
 		A7606D952B21B80A00FF0EC5 /* puzzle7.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606D942B21B80A00FF0EC5 /* puzzle7.swift */; };
 		A7606D992B22F76100FF0EC5 /* puzzle8.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7606D982B22F76100FF0EC5 /* puzzle8.swift */; };
@@ -73,6 +74,7 @@
 		A73EED102D0D4D2C00F59632 /* puzzle2414.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2414.swift; sourceTree = "<group>"; };
 		A73EED332D0EA14000F59632 /* puzzle2415.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2415.swift; sourceTree = "<group>"; };
 		A73EED3A2D1001A200F59632 /* puzzle2416.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2416.swift; sourceTree = "<group>"; };
+		A73EED3C2D12FF4800F59632 /* puzzle2418.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle2418.swift; sourceTree = "<group>"; };
 		A7606D922B20455500FF0EC5 /* puzzle6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle6.swift; sourceTree = "<group>"; };
 		A7606D942B21B80A00FF0EC5 /* puzzle7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle7.swift; sourceTree = "<group>"; };
 		A7606D982B22F76100FF0EC5 /* puzzle8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puzzle8.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				A73EED102D0D4D2C00F59632 /* puzzle2414.swift */,
 				A73EED332D0EA14000F59632 /* puzzle2415.swift */,
 				A73EED3A2D1001A200F59632 /* puzzle2416.swift */,
+				A73EED3C2D12FF4800F59632 /* puzzle2418.swift */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				A7606D932B20455500FF0EC5 /* puzzle6.swift in Sources */,
 				A76D9E7B2D057A9000E12077 /* puzzle2408.swift in Sources */,
 				A7606D9B2B244EC200FF0EC5 /* puzzle9.swift in Sources */,
+				A73EED3D2D12FF4C00F59632 /* puzzle2418.swift in Sources */,
 				A770BCD62B1EFFD200278B11 /* data4.swift in Sources */,
 				A77776FE2CFF98B000B71083 /* puzzle2403.swift in Sources */,
 			);
