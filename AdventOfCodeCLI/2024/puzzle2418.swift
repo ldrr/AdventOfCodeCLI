@@ -46,14 +46,6 @@ class Puzzle2418 {
         }
     }
 
-    func part1(numberOfInstructions: Int) -> Int {
-        for i in 0..<numberOfInstructions {
-            let cmd = instructions[i]
-            memory[cmd.1][cmd.0] = false
-        }
-        return dijkstra() ?? -1
-    }
-
     func dijkstra() -> Int? {
         let rows = memory.count
         let cols = memory[0].count
@@ -87,11 +79,33 @@ class Puzzle2418 {
 
         return nil // If no path was found
     }
+
+    func part1(numberOfInstructions: Int) -> Int {
+        for i in 0..<numberOfInstructions {
+            let cmd = instructions[i]
+            memory[cmd.1][cmd.0] = false
+        }
+        return dijkstra() ?? -1
+    }
+
+    func part2(start: Int) -> (Int, Int)? {
+        for (idx, pos) in instructions.enumerated() {
+            memory[pos.1][pos.0] = false
+
+            if idx >= start {
+                guard dijkstra() != nil else {
+                    return pos
+                }
+            }
+        }
+        return nil
+    }
 }
 
 func puzzle2418() {
     let puzzle = Puzzle2418(input: data, gridSize: 71)
     print(puzzle.part1(numberOfInstructions: 1024))
+    print(puzzle.part2(start: 1024) ?? "n/a")
 }
 
 private let data1 = """
