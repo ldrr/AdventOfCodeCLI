@@ -26,6 +26,141 @@ struct PriorityQueue<Element: Hashable> {
     }
 }
 
+class Puzzle2416Part2 {
+
+    var plan: [[Tile]]
+    var start: Pos!, end: Pos!
+
+    init(input: String) {
+        self.plan = input.components(separatedBy: "\n").map({ $0.map {
+            Tile(rawValue: $0)!
+        } })
+        for y in 0..<plan.count {
+            for x in 0..<plan[0].count {
+                switch plan[y][x] {
+                case .start:
+                    self.start = Pos(x, y)
+                case .end:
+                    self.end = Pos(x, y)
+                default:
+                    break
+                }
+            }
+        }
+    }
+
+    var description: String {
+        var desc = ""
+        for y in 0..<plan.count {
+            for x in 0..<plan[0].count {
+                desc.append(plan[y][x].rawValue)
+            }
+            desc.append("\n")
+        }
+        return desc
+    }
+
+    enum Tile: Character {
+        case wall = "#"
+        case empty = "."
+        case start = "S"
+        case end = "E"
+        case visited = "O"
+    }
+
+    struct Pos: Hashable, CustomStringConvertible {
+        var description: String {
+            "(\(x)/\(y))"
+        }
+
+        var x: Int, y: Int
+
+        init(_ x: Int, _ y: Int) {
+            self.x = x
+            self.y = y
+        }
+    }
+
+    enum Direction: Int, CaseIterable, Hashable {
+        case up, right, down, left
+
+        @inlinable var rightTurn: Self {
+            Direction(rawValue: (self.rawValue + 1) % 4)!
+        }
+        @inlinable var leftTurn: Self {
+            Direction(rawValue: (self.rawValue + 3) % 4)!
+        }
+    }
+
+    struct Vector: Hashable {
+        var x: Int, y: Int
+        var dir: Direction
+        var cost: Int
+
+        @inlinable func `in`(direction: Direction, cost: Int) -> Vector {
+            switch direction {
+            case .left:
+                return Vector(x: self.x - 1, y: self.y, dir: direction, cost: cost)
+            case .right:
+                return Vector(x: self.x + 1, y: self.y, dir: direction, cost: cost)
+            case .up:
+                return Vector(x: self.x, y: self.y - 1, dir: direction, cost: cost)
+            case .down:
+                return Vector(x: self.x, y: self.y + 1, dir: direction, cost: cost)
+            }
+        }
+
+        @inlinable func nextVectors() -> [Vector] {
+            var nextVectors = [Vector]()
+            nextVectors.append(self.in(direction: self.dir, cost: self.cost + 1))
+            nextVectors.append(self.in(direction: self.dir.leftTurn, cost: self.cost + 1001))
+            nextVectors.append(self.in(direction: self.dir.rightTurn, cost: self.cost + 1001))
+            return nextVectors
+        }
+
+        var pos: Pos {
+            Pos(x, y)
+        }
+    }
+
+    struct CacheItem: Hashable {
+        let x: Int, y: Int, dir: Direction
+    }
+
+    func run() -> Int {
+        var paths = [(Int, [(Pos)])]()
+        var cache = [CacheItem: Int]()
+        let startEdge = Vector(x: start.x, y: start.y, dir: .right, cost: 0)
+        var queue: [(from: Vector, travelledPath: [Vector])] = [(startEdge, [startEdge])]
+        var bestCost = 122492 // Int.max
+//        var map: [Vector: Vector] = [:]
+
+        while let next = queue.popLast() {
+            let from = next.from
+
+            let cacheKey = CacheItem(x: from.x, y: from.y, dir: from.dir)
+            if let cacheCost = cache[cacheKey], (cacheCost < from.cost || from.cost > bestCost) {
+                continue
+            }
+            cache[cacheKey] = from.cost
+
+            if from.x == end.x && from.y == end.y {
+                bestCost = min(bestCost, from.cost)
+                paths.append((from.cost, next.travelledPath.map { $0.pos }))
+                continue
+            }
+            let nextVectors = from.nextVectors().filter({ self.plan[$0.y][$0.x] != .wall })
+            for nextVector in nextVectors {
+                queue.append((nextVector, next.travelledPath + [nextVector] ))
+            }
+        }
+
+        let cheapestPaths = paths.filter { $0.0 == bestCost }
+        let distinctPositions = Set(cheapestPaths.flatMap { $0.1 })
+        return distinctPositions.count
+    }
+}
+
 class Puzzle2416: CustomStringConvertible {
 
     var description: String {
@@ -162,25 +297,27 @@ class Puzzle2416: CustomStringConvertible {
 }
 
 func puzzle2416() {
-    let puzzle = Puzzle2416(input: shortPuzzle)
-    print(puzzle.part1())
+    let puzzle = Puzzle2416Part2(input: data)
+    print(puzzle.run())
+    //print(puzzle.partTwo(data2.components(separatedBy: "\n")))
 }
 
 private let shortPuzzle = """
 ########
 #.....E#
 #..#.###
-#.....##
+#..#..##
 ##.#..##
-#S....##
+#S.#..##
 ########
 """
-private let data2 = """
+
+private let data1 = """
 ###############
 #.......#....E#
-#.#.###.#.#.#.#
-#.....#.#.....#
-#.###.#####.###
+#.#.###.#.###.#
+#.....#.#...#.#
+#.###.#####.#.#
 #.#.#.......#.#
 #.#.#####.###.#
 #...........#.#
@@ -191,26 +328,6 @@ private let data2 = """
 #.###.#.#.#.#.#
 #S..#.....#...#
 ###############
-"""
-
-private let data1 = """
-#################
-#...#...#...#..E#
-#.#.#.#.#.#.#.#.#
-#.#.#.#...#...#.#
-#.#.#.#.###.#.#.#
-#...#.#.#.....#.#
-#.#.#.#.#.#####.#
-#.#...#.#.#.....#
-#.#.#####.#.###.#
-#.#.#.......#...#
-#.#.###.#####.###
-#.#.#...#.....#.#
-#.#.#.#####.###.#
-#.#.#.........#.#
-#.#.#.#########.#
-#S#.............#
-#################
 """
 
 private let data = """
