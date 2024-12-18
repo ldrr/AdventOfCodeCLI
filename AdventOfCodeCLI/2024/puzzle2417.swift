@@ -9,7 +9,7 @@ import Foundation
 
 class Puzzle2417: CustomStringConvertible {
     var description: String {
-        "A = \(a), B = \(b), C = \(c), pointer = \(pointer), output = \(output.map { String($0) }.joined(separator: ","))"
+        "A = \(String(a, radix: 8)), B = \(b), C = \(c), pointer = \(pointer), output = \(output.map { String($0) }.joined(separator: ","))"
     }
 
     var a: Int, b: Int, c: Int
@@ -29,11 +29,28 @@ class Puzzle2417: CustomStringConvertible {
         self.cmds = cmdString.components(separatedBy: ",").map { Int($0)! }
     }
 
+    func reset(withA: Int) {
+        self.a = withA
+        self.b = 0
+        self.c = 0
+        self.pointer = 0
+        self.output = []
+    }
+
     func part1() -> String {
         while pointer < cmds.count {
             runInstruction(opcode: cmds[pointer], operand: cmds[pointer + 1])
+            print(self)
         }
         return output.map { String($0) }.joined(separator: ",")
+    }
+
+    func runComputer(a: Int) -> [Int] {
+        reset(withA: a)
+        while pointer < cmds.count {
+            runInstruction(opcode: cmds[pointer], operand: cmds[pointer + 1])
+        }
+        return self.output
     }
 
     private func get(combo: Int) -> Int {
@@ -84,13 +101,27 @@ class Puzzle2417: CustomStringConvertible {
             fatalError("Unexpected opcode \(opcode) with \(operand)")
         }
     }
+
+    func part2b() -> Int {
+        var i = 0
+        var pos = self.cmds.count - 1
+        while(true) {
+            let result = runComputer(a: i)
+            if result[0] == self.cmds[pos] {
+                pos -= 1
+                if pos < 0 { return i }
+                i = i << 3
+            } else {
+                i += 1
+            }
+        }
+    }
 }
 
 func puzzle2417() {
     let p = Puzzle2417(input: data)
     print(p.part1())
-    print(p)
-    print("not 6,3,2,6,3,3,4,1,6")
+    print(p.part2b())
 }
 
 private let testdata = """
