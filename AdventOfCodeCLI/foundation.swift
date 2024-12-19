@@ -32,6 +32,14 @@ public extension RandomAccessCollection {
 }
 
 extension String {
+    func remove(prefix: String) -> String? {
+        if self.hasPrefix(prefix) {
+            return String(self.dropFirst(prefix.count))
+        } else {
+            return nil
+        }
+    }
+
     func mid(start: Int, length: Int) -> String {
         let startPos = self.index(self.startIndex, offsetBy: start)
         let endPos = self.index(self.startIndex, offsetBy: start + length)

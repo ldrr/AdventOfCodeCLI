@@ -133,7 +133,6 @@ class Puzzle2416Part2 {
         let startEdge = Vector(x: start.x, y: start.y, dir: .right, cost: 0)
         var queue: [(from: Vector, travelledPath: [Vector])] = [(startEdge, [startEdge])]
         var bestCost = 122492 // Int.max
-//        var map: [Vector: Vector] = [:]
 
         while let next = queue.popLast() {
             let from = next.from
