@@ -8,25 +8,28 @@
 class Puzzle2419 {
 
     let patterns: [String]
+    var patternsByLength: [Int: [String]] = [:]
+
     let towels: [String]
-    var impossibleTowels = [String]()
+    var impossibleTowels = Set<String>()
     var cache: [String: Int] = [:]
 
     init(data: String) {
         let data = data.components(separatedBy: "\n\n")
         patterns = data[0].replacingOccurrences(of: " ", with: "").components(separatedBy: ",").map { $0 }
         towels = data[1].components(separatedBy: "\n")
+        patternsByLength = Dictionary(grouping: patterns, by: { $0.count })
     }
 
     func part1() -> Int {
-        self.towels.filter { countPossibles(towel: $0) > 0 }.count
+        self.towels.filter { countPossibles(towel: $0, stopAtFirstMatch: true) > 0 }.count
     }
 
     func part2() -> Int {
         self.towels.reduce(0) { $0 + countPossibles(towel: $1) }
     }
 
-    func countPossibles(towel: String) -> Int {
+    func countPossibles(towel: String, stopAtFirstMatch: Bool = false) -> Int {
         if towel.isEmpty {
             return 1
         }
@@ -37,15 +40,23 @@ class Puzzle2419 {
             return 0
         }
         var newCount = 0
-        for prefix in self.patterns {
-            if towel.hasPrefix(prefix) {
-                newCount += self.countPossibles(towel: String(towel.dropFirst(prefix.count)))
+        for length in patternsByLength.keys.sorted() {
+            guard towel.count >= length else { break }
+            for prefix in patternsByLength[length]! {
+                if towel.hasPrefix(prefix) {
+                    newCount += self.countPossibles(towel: String(towel.dropFirst(prefix.count)))
+                    if stopAtFirstMatch && newCount > 0 {
+                        cache[towel] = newCount
+                        return newCount
+                    }
+                }
             }
         }
+
         if newCount > 0 {
             self.cache[towel] = newCount
         } else {
-            impossibleTowels.append(towel)
+            impossibleTowels.insert(towel)
         }
         return newCount
     }
