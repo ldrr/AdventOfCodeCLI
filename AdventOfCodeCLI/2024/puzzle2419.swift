@@ -9,6 +9,8 @@ class Puzzle2419 {
 
     let patterns: [String]
     let towels: [String]
+    var impossibleTowels = [String]()
+    var cache: [String: Int] = [:]
 
     init(data: String) {
         let data = data.components(separatedBy: "\n\n")
@@ -17,55 +19,43 @@ class Puzzle2419 {
     }
 
     func part1() -> Int {
-        self.towels.filter { isPossible(towel: $0) }.count
+        self.towels.filter { countPossibles(towel: $0) > 0 }.count
     }
 
-    public func isPossible(towel: String) -> Bool {
-        if towel.isEmpty || possibleTowels.contains(towel) {
-            return true
+    func part2() -> Int {
+        self.towels.reduce(0) { $0 + countPossibles(towel: $1) }
+    }
+
+    func countPossibles(towel: String) -> Int {
+        if towel.isEmpty {
+            return 1
+        }
+        if let cachedCount = cache[towel] {
+            return cachedCount
         }
         if impossibleTowels.contains(towel) {
-            return false
+            return 0
         }
+        var newCount = 0
         for prefix in self.patterns {
-            if let newTowel = towel.remove(prefix: prefix) {
-                if self.isPossible(towel: newTowel) {
-                    self.possibleTowels.append(newTowel)
-                    return true
-                }
+            if towel.hasPrefix(prefix) {
+                newCount += self.countPossibles(towel: String(towel.dropFirst(prefix.count)))
             }
         }
-        impossibleTowels.append(towel)
-        return false
+        if newCount > 0 {
+            self.cache[towel] = newCount
+        } else {
+            impossibleTowels.append(towel)
+        }
+        return newCount
     }
-
-    var possibleTowels = [String]()
-    var impossibleTowels = [String]()
 }
 
 func puzzle2419() {
     let puzzle = Puzzle2419(data: data)
     print(puzzle.part1())
+    print(puzzle.part2())
 }
-
-private let shortData = """
-r, wr, b, g, bwu, rb, gb, br
-
-bwurrg
-"""
-
-private let data1 = """
-r, wr, b, g, bwu, rb, gb, br
-
-brwrr
-bggr
-gbbr
-rrbgbr
-ubwu
-bwurrg
-brgr
-bbrgwb
-"""
 
 private let singleTowel = """
 rrgbgg, gbgbgr, rrb, wrgggbb, rr, bgb, wbb, ruugr, gwugg, ruu, gubw, gru, bgg, uwu, bggwbrgw, wwugbr, ur, urb, bbb, rrbrbw, uww, wggwwu, wwrb, gbg, wuruu, wbgbwbr, ggu, grgwru, g, uugbuu, rwrrwb, uurwub, grgr, wubb, buwu, guu, bbw, rgwgbg, grr, uuuwr, ggubrrg, uuub, gugu, bur, bguub, rgr, bwu, bwbuw, wwwwbw, uurbbgb, rwb, uuw, ggurug, wrr, gww, rgbgu, wgr, rw, uguu, brb, ugrr, brwurgu, rugg, gbuwr, gb, uggbrbr, urwrbgb, rbgwbwb, gg, rur, uuu, wr, grur, uwugb, gbrugru, buug, bbrw, uurugru, u, bb, ubggb, brrb, rrg, bgur, gubub, gwwu, rugurug, ggbgbgbb, ggbwgr, gurw, gbgww, ugbg, gugb, grg, rggwg, buwb, wbu, guwu, rggbgugw, ggb, ruub, rugw, ugb, wrw, www, gwwbr, bru, bgurrbru, rrug, wubgug, brguw, wbugr, ggur, rgwuurrw, wurrg, rrgu, wwrwrb, brg, wwg, ugugu, ugr, rbgr, rg, uggg, rgrg, wwb, rrgrrwg, bgwb, brgbwgu, rurg, brw, brww, brggu, rgwwbbgg, uwgb, rwgggwwb, wrgrbw, bwrgw, wbbw, rbub, gbguuuub, bwrwg, uurruu, rugu, urrwguw, bwru, bu, wuub, ugggr, uuug, gu, uugggb, wbbb, rrr, b, rgwgr, gbr, gwrwwrw, ugu, ggw, wgub, wuw, uubr, ggrgbg, uwbbu, ubwurb, rbb, uur, uwrruug, wrggur, bwrr, wugb, wuwr, wwgb, wgubgg, wg, rgwbgwbw, rggugug, uub, uggug, wgu, brgrrub, rwwrgbr, gbgrgr, grgubbu, ugbbr, urw, ubuubb, burgw, ubu, gwgub, wwwubrgu, wwwww, bgr, bgu, gwwruuw, wgrgw, uwuu, wrb, ubw, rgrwu, brrrrr, wrgbb, gwuuwbg, wwbgu, uugbwrww, brwbg, ub, rbru, ruggwr, gwb, ggwrgg, ggurur, rgrrwrbw, wrgw, bugg, gbu, rgu, rwuw, gwg, uuwwu, uwbwww, wuwwbuu, wb, bbrr, rgrgwru, burr, ugurubu, gwu, buurb, wrgg, bugbrw, burbuw, bwr, urr, grgu, ruw, ugbwgw, rbrug, uuugr, buubwr, rurwg, ugrgw, grru, uwwwbur, uuwu, gwrwr, uruuu, urwgugbb, wrurwur, rwr, rgb, brbub, gwr, gwbb, brrbwb, bwwgw, bguw, ug, rru, wrg, uurrg, rww, bbu, wgbb, grw, ubg, uwg, ww, gbwr, rrwugr, wrrgwb, rrw, wbuuuub, wrurggr, bwrb, bbrbrgg, ggggbrw, ugug, wur, wwbr, gubbrwur, wgwgwb, wbbrr, wgw, rbwwbr, w, bbgw, urg, wbgbg, wbr, bbwbw, uu, wgwguw, wu, bgwgu, wub, buu, rb, bgbw, bgwgb, uwgrbu, guw, rbbgu, wru, rubgggwu, gur, rbrgw, gwug, wguwrr, gubbr, rub, rbwu, rgg, bggug, bwugb, rbbbgr, bbbwg, guwrrb, grrggg, bgwu, uuwbru, bbg, rug, uugu, gwugwu, ubb, gub, uubu, bwwrru, guub, wwr, urbgw, uru, wwu, wwwurwwu, bbwg, ubbbwg, gbug, bwbr, wgggwg, urgwub, bub, bg, uwrg, uwr, ubrrb, bug, rggru, rbw, ggrw, bbwwg, gr, gubu, uubbg, bwg, urggw, uuwrrgw, ugg, bbrg, gug, bwggww, grbb, bbbu, rbu, ru, ubuggr, ruuu, uug, uwb, wwwbug, uggwr, gbwuw, grwr, uwuwgbub, wwbw, bww, rbbwwr, bwww, ggggu, ugw, bwwwu, uuwug, wbbggrg, bwb, grbrgwu, bwwu, bw, ruurr, wbg, ubrg, uwuw, brrg, brwuu, gugw, urbggb, bruw, wbwuggw, ggwwr, rbwr, wbrgr, uugg, bbru, ugwuguwu, rwrg, bgwwwrw, uugwg, bwurrr, bwrwr, wwwrggu, bbr, rruwu, rgw, buw, urbrbg, wgg, gbgb, rwu, gubbu, gbgbgbrr, wbw, ubr, wgb, gw, buuwbr, rugrrur, gbuuwwr, rburubg, gbb, ugrgr, wug, ggggb, ggru, brwwg, bwwgrb, gurwubww, ggg, bwgb, bgugbw, rrrww, ggr, gbbb, bgw, bugu, wuu, grgur, rwg
