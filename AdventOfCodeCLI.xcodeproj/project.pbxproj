@@ -246,7 +246,6 @@
 		A77776F32CFDD71800B71083 /* 2024 */ = {
 			isa = PBXGroup;
 			children = (
-				A78403782D140017005518D1 /* puzzle2419.swift */,
 				A77776F62CFDD75600B71083 /* puzzle2401.swift */,
 				A77776FB2CFDE05B00B71083 /* puzzle2402.swift */,
 				A77776FD2CFF98B000B71083 /* puzzle2403.swift */,
@@ -265,6 +264,7 @@
 				A73EED3A2D1001A200F59632 /* puzzle2416.swift */,
 				A73EED3E2D130B5200F59632 /* puzzle2417.swift */,
 				A73EED3C2D12FF4800F59632 /* puzzle2418.swift */,
+				A78403782D140017005518D1 /* puzzle2419.swift */,
 			);
 			path = 2024;
 			sourceTree = "<group>";

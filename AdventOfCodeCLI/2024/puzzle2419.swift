@@ -5,6 +5,8 @@
 //  Created by Christoph Lederer on 19.12.24.
 //
 
+import Foundation
+
 class Puzzle2419 {
 
     let patterns: [String]
@@ -12,7 +14,7 @@ class Puzzle2419 {
 
     let towels: [String]
     var impossibleTowels = Set<String>()
-    var cache: [String: Int] = [:]
+    var cache = [String: Int]()
 
     init(data: String) {
         let data = data.components(separatedBy: "\n\n")
